@@ -1,0 +1,56 @@
+﻿{
+  "title": "Salas de juego",
+  "createRoom": "Crear nueva sala", 
+  "createNewRoom": "Crear Nueva Sala",
+  "joinRoom": "Unirse a sala",
+  "roomCreated": "¡Sala creada correctamente!",
+  "roomJoined": "Te uniste a la sala",
+  "roomLeft": "Saliste de la sala",
+  "noRooms": "No hay salas disponibles",
+  "loading": "Cargando salas...",
+  "availableRooms": "Salas Disponibles",
+  "noRoomsAvailable": "No hay salas creadas aún. ¡Crea la primera sala!",
+  "createdOn": "Creado",
+  "searchPlaceholder": "Buscar salas...",
+  "filters": {
+    "allGames": "Todos los juegos",
+    "allRegions": "Todas las regiones", 
+    "allLanguages": "Todos los idiomas",
+    "allSystems": "Todos los sistemas"
+  },
+  "create": {
+    "title": "Crear Sala",
+    "success": "Sala creada correctamente. Redirigiendo...",
+    "form": {
+      "roomName": "Nombre de la sala",
+      "game": "Juego",
+      "region": "Región",
+      "language": "Idioma",
+      "country": "País",
+      "platform": "Plataforma",
+      "submit": "Crear sala",
+      "placeholders": {
+        "roomName": "Ej: Squad para Ranked"
+      },
+      "validation": {
+        "nameRequired": "Completa todos los campos y selecciona al menos una opción en cada filtro",
+        "nameExists": "Ya existe una sala con ese nombre"
+      }
+    }
+  },
+  "info": {
+    "players": "{{current}}/{{max}} jugadores",
+    "createdBy": "Creado por {{username}}",
+    "region": "Región: {{region}}",
+    "language": "Idioma: {{language}}",
+    "platform": "Plataforma: {{platform}}"
+  },
+  "card": {
+    "enterRoom": "Entrar a la sala",
+    "regions": "",
+    "languages": "",
+    "countries": "",
+    "systems": "",
+    "playersCount": "{{min}}-{{max}} jugadores"
+  }
+}

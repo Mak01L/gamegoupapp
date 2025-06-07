@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-black text-white;
+}
+
+/* Estilos para mejorar la apariencia de los widgets */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Animaciones sutiles para los widgets de donación y publicidad */
+.donation-heart {
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  70% { transform: scale(1); }
+}
+
+/* Estilos para Google AdSense */
+.adsbygoogle {
+  display: block;
+}
+
+.google-adsense-container {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+/* Estilos adicionales para mejorar la integración de anuncios */
+.ad-fallback {
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.1), rgba(75, 0, 130, 0.1));
+  border: 1px solid rgba(139, 69, 19, 0.3);
+}

@@ -1,0 +1,80 @@
+{
+  "chat": {
+    "roomTitle": "Sala: {{roomName}}",
+    "activeUsers": "{{count}} usuario activo",
+    "activeUsers_other": "{{count}} usuarios activos",
+    "sendMessage": "Enviar mensaje",
+    "send": "Enviar",
+    "typePlaceholder": "Escribe un mensaje...",
+    "userJoined": "{{username}} se unió a la sala",
+    "userLeft": "{{username}} salió de la sala",
+    "messageDeleted": "Mensaje eliminado",
+    "noMessages": "No hay mensajes aún. ¡Sé el primero en escribir!",
+    "connectionStatus": {
+      "connected": "Conectado",
+      "disconnected": "Desconectado",
+      "reconnecting": "Reconectando..."
+    },    "actions": {
+      "exitRoom": "Salir de la sala",
+      "deleteMessage": "Eliminar mensaje",
+      "reportUser": "Reportar usuario",
+      "muteUser": "Silenciar usuario",
+      "kickUser": "Expulsar usuario"
+    },
+    "moderation": {
+      "userKicked": "{{username}} ha sido expulsado de la sala",
+      "kickSuccess": "Usuario expulsado exitosamente",
+      "kickError": "Error al expulsar usuario",
+      "onlyCreatorCanKick": "Solo el creador puede expulsar usuarios",
+      "cannotKickSelf": "No puedes expulsarte a ti mismo"
+    },
+    "notifications": {
+      "messageReceived": "Nuevo mensaje recibido",
+      "roomEmpty": "La sala está vacía",
+      "roomDeleted": "La sala fue eliminada automáticamente"
+    },    "room": {
+      "title": "Chat de la Sala",
+      "loading": "Cargando sala...",
+      "error": "Error al cargar la sala",
+      "usersInRoom": "Usuarios en Sala ({{count}})",
+      "leaveRoom": "Salir de la sala",
+      "leaveRoomShort": "Salir",
+      "regions": "Regiones",
+      "languages": "Idiomas",
+      "countries": "Países",
+      "systems": "Sistemas",
+      "players": "Jugadores",
+      "all": "Todos",
+      "creator": "Creador",
+      "you": "(Tú)",
+      "user": "Usuario"
+    }
+  },  "roomChat": {
+    "loadingRoom": "Cargando sala...",
+    "roomNotFound": "Sala no encontrada",
+    "leaveRoom": "Salir de la sala",
+    "leaveRoomShort": "Salir",
+    "regions": "Regiones",
+    "languages": "Idiomas",
+    "countries": "Países",
+    "systems": "Sistemas",
+    "players": "Jugadores",
+    "all": "Todos",
+    "roomChat": "Chat de la Sala",
+    "chatInDevelopment": "Chat en desarrollo",
+    "realTimeChatActivation": "El chat en tiempo real se activará una vez que se configuren las tablas de la base de datos.",
+    "executeSupabaseScript": "Por favor, ejecuta el script SQL en Supabase.",
+    "chatComingSoon": "Chat próximamente disponible...",
+    "send": "Enviar",
+    "usersInRoom": "Usuarios en Sala",
+    "userListComingSoon": "Lista de usuarios próximamente disponible",
+    "requiredConfiguration": "Configuración Requerida",
+    "activateRealTimeChat": "Para activar el chat en tiempo real, ejecuta el archivo",
+    "inSupabaseSQLEditor": "en el Editor SQL de Supabase.",
+    "goToSupabaseDashboard": "Ve al Dashboard de Supabase",
+    "selectYourProject": "Selecciona tu proyecto",
+    "goToSQL": "Ve al Editor SQL",
+    "copyAndPasteScript": "Copia y pega el script del archivo",
+    "executeScript": "Ejecuta el script"
+  }
+}

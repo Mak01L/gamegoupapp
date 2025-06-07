@@ -1,0 +1,56 @@
+﻿{
+  "title": "Game Rooms",
+  "createRoom": "Create new room",
+  "createNewRoom": "Create New Room",
+  "joinRoom": "Join room",
+  "roomCreated": "Room created successfully!",
+  "roomJoined": "You joined the room",
+  "roomLeft": "You left the room",
+  "noRooms": "No rooms available",
+  "loading": "Loading rooms...",
+  "availableRooms": "Available Rooms",
+  "noRoomsAvailable": "No rooms created yet. Create the first room!",
+  "createdOn": "Created",
+  "searchPlaceholder": "Search rooms...",
+  "filters": {
+    "allGames": "All games",
+    "allRegions": "All regions",
+    "allLanguages": "All languages",
+    "allSystems": "All systems"
+  },
+  "create": {
+    "title": "Create Room",
+    "success": "Room created successfully. Redirecting...",
+    "form": {
+      "roomName": "Room name",
+      "game": "Game",
+      "region": "Region",
+      "language": "Language",
+      "country": "Country",
+      "platform": "Platform",
+      "submit": "Create room",
+      "placeholders": {
+        "roomName": "E.g: Squad for Ranked"
+      },
+      "validation": {
+        "nameRequired": "Complete all fields and select at least one option in each filter",
+        "nameExists": "A room with that name already exists"
+      }
+    }
+  },
+  "info": {
+    "players": "{{current}}/{{max}} players",
+    "createdBy": "Created by {{username}}",
+    "region": "Region: {{region}}",
+    "language": "Language: {{language}}",
+    "platform": "Platform: {{platform}}"
+  },
+  "card": {
+    "enterRoom": "Enter room",
+    "regions": "",
+    "languages": "",
+    "countries": "",
+    "systems": "",
+    "playersCount": "{{min}}-{{max}} players"
+  }
+}

@@ -1,0 +1,111 @@
+{  "profile": {
+    "title": "My profile",
+    "edit": "Edit",
+    "save": "Save",
+    "editProfile": "Edit profile",
+    "saveProfile": "Save profile",
+    "cancel": "Cancel",
+    "profileUpdated": "Profile updated successfully",
+    "loadingProfile": "Loading profile...",
+    "saving": "Saving...",
+    "pleaseLogin": "Please log in to view your profile.",
+    "avatar": {
+      "changeAvatar": "Change avatar",
+      "uploadNew": "Upload new avatar",
+      "altText": "{{username}}'s avatar"
+    },
+    "status": {
+      "online": "Online",
+      "offline": "Offline"
+    },
+    "form": {
+      "biography": "Biography",
+      "realName": "Real name",
+      "location": "Location",
+      "birthdate": "Date of birth",
+      "username": "Username",
+      "email": "Email",
+      "favoriteGames": "Favorite games",
+      "gamingExperience": "Gaming experience",
+      "placeholders": {
+        "username": "Your gamer name",
+        "bio": "Tell us about yourself...",
+        "favoriteGames": "League of Legends, Valorant, etc.",
+        "selectCountry": "Select your country",
+        "realName": "Real name",
+        "biography": "Tell us about yourself..."
+      },
+      "validation": {
+        "usernameRequired": "Username is required",
+        "usernameMinLength": "Minimum 3 characters",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Invalid email address",
+        "bioTooLong": "Biography is too long (max 250 characters)",
+        "realNameTooLong": "Real name is too long (max 50 characters)"
+      }
+    },
+    "privacy": {
+      "show": "Show",
+      "private": "Private",
+      "notSpecified": "Not specified"
+    },
+    "preferences": {
+      "theme": "Theme",
+      "language": "Language",
+      "visibility": "Visibility",
+      "options": {
+        "themeAuto": "Auto",
+        "themeLight": "Light",
+        "themeDark": "Dark",
+        "spanish": "Spanish",
+        "english": "English",
+        "public": "Public",
+        "private": "Private"
+      }
+    },
+    "activity": {
+      "memberSince": "Member since",
+      "lastConnection": "Last connection",
+      "roomsCreated": "Rooms created",
+      "gamesPlayed": "Games played"
+    },
+    "noData": {
+      "noBiography": "No biography yet."
+    },    "characterCount": "{{count}}/250 characters",
+    "biography": "Biography",
+    "biography_placeholder": "Tell us about yourself...",
+    "no_biography": "No biography yet.",
+    "real_name": "Real name",
+    "real_name_placeholder": "Real name",
+    "location": "Location",
+    "select_country": "Select your country",
+    "birthdate": "Date of birth",
+    "birthdate_placeholder": "Date of birth",
+    "theme": "Theme",
+    "select_theme": "Select theme",
+    "auto": "Auto",
+    "light": "Light",
+    "dark": "Dark",
+    "language": "Language",
+    "select_language": "Select language",
+    "spanish": "Spanish",
+    "english": "English",
+    "visibility": "Visibility",
+    "select_visibility": "Select visibility",
+    "public": "Public",
+    "private": "Private",
+    "show": "Show",
+    "not_specified": "Not specified",
+    "member_since": "Member since",
+    "last_connection": "Last connection",
+    "rooms_created": "Rooms created",
+    "games_played": "Games played",
+    "characters": "characters",
+    "experience": {
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "professional": "Professional"
+    }
+  }
+}

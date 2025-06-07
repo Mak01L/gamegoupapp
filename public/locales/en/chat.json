@@ -1,0 +1,80 @@
+{
+  "chat": {
+    "roomTitle": "Room: {{roomName}}",
+    "activeUsers": "{{count}} active user",
+    "activeUsers_other": "{{count}} active users",
+    "sendMessage": "Send message",
+    "send": "Send",
+    "typePlaceholder": "Type a message...",
+    "userJoined": "{{username}} joined the room",
+    "userLeft": "{{username}} left the room",
+    "messageDeleted": "Message deleted",
+    "noMessages": "No messages yet. Be the first to write!",
+    "connectionStatus": {
+      "connected": "Connected",
+      "disconnected": "Disconnected",
+      "reconnecting": "Reconnecting..."
+    },    "actions": {
+      "exitRoom": "Exit room",
+      "deleteMessage": "Delete message",
+      "reportUser": "Report user",
+      "muteUser": "Mute user",
+      "kickUser": "Kick user"
+    },
+    "moderation": {
+      "userKicked": "{{username}} has been kicked from the room",
+      "kickSuccess": "User kicked successfully",
+      "kickError": "Error kicking user",
+      "onlyCreatorCanKick": "Only the creator can kick users",
+      "cannotKickSelf": "You cannot kick yourself"
+    },
+    "notifications": {
+      "messageReceived": "New message received",
+      "roomEmpty": "Room is empty",
+      "roomDeleted": "Room was automatically deleted"
+    },    "room": {
+      "title": "Room Chat",
+      "loading": "Loading room...",
+      "error": "Error loading room",
+      "usersInRoom": "Users in Room ({{count}})",
+      "leaveRoom": "Leave room",
+      "leaveRoomShort": "Leave",
+      "regions": "Regions",
+      "languages": "Languages",
+      "countries": "Countries",
+      "systems": "Systems",
+      "players": "Players",
+      "all": "All",
+      "creator": "Creator",
+      "you": "(You)",
+      "user": "User"
+    }
+  },  "roomChat": {
+    "loadingRoom": "Loading room...",
+    "roomNotFound": "Room not found",
+    "leaveRoom": "Leave room",
+    "leaveRoomShort": "Leave",
+    "regions": "Regions",
+    "languages": "Languages",
+    "countries": "Countries",
+    "systems": "Systems",
+    "players": "Players",
+    "all": "All",
+    "roomChat": "Room Chat",
+    "chatInDevelopment": "Chat in development",
+    "realTimeChatActivation": "Real-time chat will be activated once the database tables are configured.",
+    "executeSupabaseScript": "Please run the SQL script in Supabase.",
+    "chatComingSoon": "Chat coming soon...",
+    "send": "Send",
+    "usersInRoom": "Users in Room",
+    "userListComingSoon": "User list coming soon",
+    "requiredConfiguration": "Required Configuration",
+    "activateRealTimeChat": "To activate real-time chat, execute the file",
+    "inSupabaseSQLEditor": "in the Supabase SQL Editor.",
+    "goToSupabaseDashboard": "Go to Supabase Dashboard",
+    "selectYourProject": "Select your project",
+    "goToSQL": "Go to SQL Editor",
+    "copyAndPasteScript": "Copy and paste the script from the file",
+    "executeScript": "Execute the script"
+  }
+}
