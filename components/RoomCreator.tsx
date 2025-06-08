@@ -5,38 +5,124 @@ import { supabase } from '../lib/supabaseClient'
 import { Combobox } from '@headlessui/react'
 import countryFlagEmoji from 'country-flag-emoji';
 import { FaWindows, FaPlaystation, FaXbox, FaApple, FaLinux, FaAndroid, FaSteam, FaGlobe, FaMobileAlt, FaGamepad, FaQuestion } from 'react-icons/fa';
-import { Database } from '../supabase.types'; // Import Database type
 import { useTranslation } from 'react-i18next';
 
-// Lista extendida de juegos online populares
+// Lista extendida de juegos online populares organizados por categorías
 const JUEGOS = [
-  'Apex Legends', 'Minecraft', 'Valorant', 'League of Legends', 'Fortnite', 
-  'Counter-Strike', 'Rocket League', 'Call of Duty', 'PUBG', 'Overwatch', 
-  'Dota 2', 'Genshin Impact', 'Roblox', 'Among Us', 'Grand Theft Auto V', 
-  'FIFA', 'NBA 2K', 'Rainbow Six Siege', 'The Sims', 'World of Warcraft', 
-  'Hearthstone', 'Destiny 2', 'Elden Ring', 'Lost Ark', 'ARK: Survival Evolved', 
-  'Rust', 'Escape from Tarkov', 'Team Fortress 2', 'Paladins', 'Smite', 
-  'Brawlhalla', 'Warframe', 'Sea of Thieves', 'Fall Guys', 'Dead by Daylight', 
-  'Monster Hunter', 'Pokémon Unite', 'Mobile Legends', 'Clash Royale', 'Clash of Clans', 
-  'Free Fire', 'Arena of Valor', 'Wild Rift', 'Stumble Guys', 'Diablo IV', 
-  'Star Wars Battlefront', 'Battlefield', 'Halo', 'Left 4 Dead', 'Payday 2', 
-  'Terraria', 'Stardew Valley', 'Phasmophobia', 'New World', 'Forza Horizon', 
-  'Gran Turismo', 'Mario Kart', 'Super Smash Bros', 'Splatoon', 'Animal Crossing', 
-  'Pokémon GO', 'Zelda: Breath of the Wild', 'Metin2', 'Tibia', 'RuneScape', 
-  'MapleStory', 'Guild Wars 2', 'Final Fantasy XIV', 'Black Desert', 'Blade & Soul', 
-  'Crossfire', 'Point Blank', 'War Thunder', 'World of Tanks', 'World of Warships', 
-  'PlanetSide 2', 'EVE Online', 'Second Life', 'VRChat', 'Beat Saber', 
-  'Rec Room', 'No Man\'s Sky', 'Among Us VR', 'Hunt: Showdown 1896', 'Gray Zone Warfare', 
-  'Dark and Darker', 'Lost Saga', 'Combat Arms', 'Sudden Attack', 'KartRider', 
-  'Mabinogi', 'Flyff', 'Cabal Online', 'Perfect World', 'Dragon Nest', 
-  'Elsword', 'Grand Chase', 'Ragnarok Online', 'Mu Online', 'Lineage II', 
-  'Aion', 'Tera', 'S4 League', 'Special Force', 'Audition Online', 
-  'Gunbound', 'Dofus', 'Wakfu', 'Trove', 'Skyforge', 'Dauntless', 
-  'Albion Online', 'Conqueror\'s Blade', 'Crucible', 'Spellbreak', 'Hyper Scape', 
-  'Splitgate', 'Enlisted', 'World War 3', 'Super People', 'The Cycle: Frontier', 
-  'V Rising', 'Project Zomboid', 'Unturned', 'Scum', 'DayZ', 'MORDHAU', 
-  'Chivalry 2', 'For Honor', 'Mortal Online 2', 'Crowfall', 'Camelot Unchained', 
-  'Ashes of Creation', 'Blue Protocol', 'Tower of Fantasy', 'Gran Saga', 'Otro'
+  // 🔥 TOP TIER - Los más populares 2024
+  'Valorant', 'League of Legends', 'Counter-Strike 2', 'Fortnite', 'Apex Legends', 
+  'Minecraft', 'Roblox', 'Call of Duty: Modern Warfare III', 'Overwatch 2', 'PUBG',
+  'Rocket League', 'Genshin Impact', 'FIFA 24', 'Dota 2', 'Among Us',
+  
+  // 🎮 BATTLE ROYALE
+  'Fall Guys', 'Warzone', 'Naraka: Bladepoint', 'Super People', 'The Finals',
+  'Hunt: Showdown 1896', 'Vampire: The Masquerade - Bloodhunt', 'Darwin Project',
+  
+  // ⚔️ FPS & SHOOTERS  
+  'Rainbow Six Siege', 'Escape from Tarkov', 'Team Fortress 2', 'Paladins',
+  'Splitgate', 'Enlisted', 'World War 3', 'Hell Let Loose', 'Deep Rock Galactic',
+  'Left 4 Dead 2', 'Payday 3', 'Insurgency: Sandstorm', 'Ready or Not',
+  'Battlefield 2042', 'Star Wars Battlefront II', 'Destiny 2', 'Halo Infinite',
+  'The Cycle: Frontier', 'Phantom Forces', 'Krunker.io', 'Shell Shockers',
+  
+  // 🏆 ESPORTS & MOBA
+  'Smite', 'Heroes of Newerth', 'Mobile Legends: Bang Bang', 'Wild Rift',
+  'Arena of Valor', 'Pokemon Unite', 'Brawl Stars', 'Clash Royale',
+  
+  // 🌍 MMORPG & RPG
+  'World of Warcraft', 'Final Fantasy XIV', 'Guild Wars 2', 'Black Desert Online',
+  'New World', 'Lost Ark', 'Elder Scrolls Online', 'Star Wars: The Old Republic',
+  'RuneScape', 'Old School RuneScape', 'MapleStory', 'Path of Exile',
+  'Diablo IV', 'Diablo II: Resurrected', 'Albion Online', 'EVE Online',
+  'Blade & Soul', 'Lineage 2', 'Aion', 'TERA', 'Archeage', 'Neverwinter',
+  'DC Universe Online', 'Lord of the Rings Online', 'Age of Conan',
+  'Warhammer Online', 'Camelot Unchained', 'Ashes of Creation', 'Crowfall',
+  
+  // 🏗️ SURVIVAL & SANDBOX
+  'Rust', 'ARK: Survival Evolved', 'DayZ', 'Green Hell', 'The Forest',
+  'Subnautica', 'Raft', 'Valheim', 'Project Zomboid', 'Unturned', 'Scum',
+  'V Rising', 'Conan Exiles', 'Astroneer', 'No Man\'s Sky', 'Satisfactory',
+  'Terraria', 'Starbound', 'Core Keeper', 'Grounded', '7 Days to Die',
+  
+  // 🚗 RACING & SPORTS
+  'Forza Horizon 5', 'Gran Turismo 7', 'F1 23', 'Dirt Rally 2.0',
+  'Need for Speed Heat', 'Wreckfest', 'BeamNG.drive', 'Assetto Corsa',
+  'iRacing', 'rFactor 2', 'Mario Kart 8 Deluxe', 'Burnout Paradise',
+  'NBA 2K24', 'Madden NFL 24', 'NHL 24', 'MLB The Show 23',
+  'PES 2024', 'Tennis World Tour', 'Golf It!', 'Fall Guys',
+  
+  // 🧩 PUZZLE & PARTY
+  'Phasmophobia', 'It Takes Two', 'A Way Out', 'Portal 2', 'Keep Talking and Nobody Explodes',
+  'Moving Out', 'Overcooked! 2', 'Gang Beasts', 'Human: Fall Flat', 'Jackbox Games',
+  'Stumble Guys', 'Wobble Dogs', 'Party Animals', 'Rubber Bandits',
+  
+  // 🎲 STRATEGY & CARD GAMES
+  'Hearthstone', 'Legends of Runeterra', 'Magic: The Gathering Arena',
+  'Gwent', 'Shadowverse', 'Yu-Gi-Oh! Master Duel', 'Poker', 'Chess.com',
+  'Age of Empires IV', 'StarCraft II', 'Command & Conquer Remastered',
+  'Total War: Warhammer III', 'Civilization VI', 'Crusader Kings III',
+  
+  // 📱 MOBILE GAMES
+  'Clash of Clans', 'Clash Royale', 'Free Fire', 'Call of Duty Mobile',
+  'Pokémon GO', 'Pokémon Unite', 'Honor of Kings', 'Garena Free Fire',
+  'PUBG Mobile', 'Mobile Legends', 'Arena of Valor', 'Brawl Stars',
+  'Hay Day', 'Boom Beach', 'Candy Crush Saga', 'Subway Surfers',
+  
+  // 🌟 VR GAMES
+  'VRChat', 'Beat Saber', 'Half-Life: Alyx', 'Rec Room', 'Pavlov VR',
+  'Blade & Sorcery', 'Population: One', 'Gorilla Tag', 'Boneworks',
+  'The Walking Dead: Saints & Sinners', 'Phasmophobia VR', 'Among Us VR',
+  
+  // 🏮 ASIAN POPULAR
+  'Genshin Impact', 'Honkai: Star Rail', 'Tower of Fantasy', 'Blue Protocol',
+  'Lost Ark', 'Black Desert', 'Blade & Soul', 'TERA', 'Aion', 'Lineage 2M',
+  'Ragnarok Online', 'MapleStory', 'Dragon Nest', 'Elsword', 'Grand Chase',
+  'KartRider: Drift', 'Sudden Attack', 'CrossFire', 'Point Blank',
+  'Special Force', 'Combat Arms', 'Lost Saga', 'S4 League', 'Gunbound',
+  'Audition Online', 'O2Jam', 'Cabal Online', 'Perfect World', 'Jade Dynasty',
+  'Age of Wushu', 'Conquer Online', 'Mu Online', 'Silkroad Online', 'Flyff',
+  'Mabinogi', 'Vindictus', 'Dragon Ball Online', 'Naruto Online',
+  
+  // 🎪 INDIE & UNIQUE
+  'Sea of Thieves', 'Dead by Daylight', 'Phasmophobia', 'The Forest',
+  'Green Hell', 'Raft', 'Valheim', 'Core Keeper', 'Risk of Rain 2',
+  'Deep Rock Galactic', 'Warframe', 'Destiny 2', 'Monster Hunter: World',
+  'Monster Hunter Rise', 'Nioh 2', 'Elden Ring', 'Dark Souls III',
+  'Sekiro', 'Bloodborne', 'Hollow Knight', 'Dead Cells', 'Hades',
+  'Stardew Valley', 'Animal Crossing: New Horizons', 'The Sims 4',
+  'Cities: Skylines', 'Planet Coaster', 'Two Point Hospital', 'Frostpunk',
+  
+  // 🌐 BROWSER & IO GAMES
+  'Agar.io', 'Slither.io', 'Shell Shockers', 'Krunker.io', 'Surviv.io',
+  'Diep.io', 'Wings.io', 'Zombs Royale', 'Paper.io', 'Hole.io',
+  'Wormate.io', 'Splix.io', 'Mope.io', 'Little Big Snake', 'Skribbl.io',
+  
+  // 🎭 SIMULATION & MANAGEMENT
+  'The Sims 4', 'Cities: Skylines', 'Planet Coaster', 'Planet Zoo',
+  'Two Point Hospital', 'Prison Architect', 'Tropico 6', 'Anno 1800',
+  'Farming Simulator 22', 'Euro Truck Simulator 2', 'American Truck Simulator',
+  'Microsoft Flight Simulator', 'Train Sim World', 'Bus Simulator',
+  
+  // 🏛️ CLASSIC & RETRO
+  'Counter-Strike 1.6', 'Counter-Strike: Source', 'Team Fortress Classic',
+  'Half-Life 2: Deathmatch', 'Quake Champions', 'Unreal Tournament',
+  'Warcraft III', 'Age of Empires II', 'Command & Conquer', 'Red Alert',
+  'Diablo II', 'StarCraft: Brood War', 'Ultima Online', 'EverQuest',
+  'Dark Age of Camelot', 'Asheron\'s Call', 'Anarchy Online', 'City of Heroes',
+  
+  // 🚀 UPCOMING & EARLY ACCESS
+  'Deadlock', 'Marvel Rivals', 'XDefiant', 'The Day Before', 'Skull and Bones',
+  'Avatar: Frontiers of Pandora', 'Tekken 8', 'Granblue Fantasy Versus: Rising',
+  'Street Fighter 6', 'Mortal Kombat 1', 'Guilty Gear Strive', 'Dragon Ball FighterZ',
+  'The King of Fighters XV', 'Injustice 2', 'Brawlhalla', 'MultiVersus',
+  'Rivals of Aether', 'Smash Bros Ultimate', 'Tekken 7', 'Soulcalibur VI',
+  
+  // 📺 STREAMING & CONTENT
+  'Just Chatting', 'Music', 'Art', 'Talk Shows', 'IRL', 'Podcasts',
+  'Educational', 'Software Development', 'Game Development', 'Digital Art',
+  
+  // ✨ OTROS
+  'Otro', 'Custom Game', 'Homebrew', 'Mod', 'Beta Test', 'Alpha Test'
 ]
 // Lista de sistemas/plataformas para videojuegos online
 const SISTEMAS = [
@@ -55,8 +141,18 @@ const PAISES = [
   'Afganistán', 'Albania', 'Alemania', 'Andorra', 'Angola', 'Antigua y Barbuda', 'Arabia Saudita', 'Argelia', 'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaiyán', 'Bahamas', 'Bangladés', 'Barbados', 'Baréin', 'Bélgica', 'Belice', 'Benín', 'Bielorrusia', 'Birmania', 'Bolivia', 'Bosnia y Herzegovina', 'Botsuana', 'Brasil', 'Brunéi', 'Bulgaria', 'Burkina Faso', 'Burundi', 'Bután', 'Cabo Verde', 'Camboya', 'Camerún', 'Canadá', 'Catar', 'Chad', 'Chile', 'China', 'Chipre', 'Colombia', 'Comoras', 'Corea del Norte', 'Corea del Sur', 'Costa de Marfil', 'Costa Rica', 'Croacia', 'Cuba', 'Dinamarca', 'Dominica', 'Ecuador', 'Egipto', 'El Salvador', 'Emiratos Árabes Unidos', 'Eritrea', 'Eslovaquia', 'Eslovenia', 'España', 'Estados Unidos', 'Estonia', 'Esuatini', 'Etiopía', 'Filipinas', 'Finlandia', 'Fiyi', 'Francia', 'Gabón', 'Gambia', 'Georgia', 'Ghana', 'Granada', 'Grecia', 'Guatemala', 'Guyana', 'Guinea', 'Guinea-Bisáu', 'Guinea Ecuatorial', 'Haití', 'Honduras', 'Hungría', 'India', 'Indonesia', 'Irak', 'Irán', 'Irlanda', 'Islandia', 'Islas Marshall', 'Islas Salomón', 'Israel', 'Italia', 'Jamaica', 'Japón', 'Jordania', 'Kazajistán', 'Kenia', 'Kirguistán', 'Kiribati', 'Kuwait', 'Laos', 'Lesoto', 'Letonia', 'Líbano', 'Liberia', 'Libia', 'Liechtenstein', 'Lituania', 'Luxemburgo', 'Madagascar', 'Malasia', 'Malaui', 'Maldivas', 'Malí', 'Malta', 'Marruecos', 'Mauricio', 'Mauritania', 'México', 'Micronesia', 'Moldavia', 'Mónaco', 'Mongolia', 'Montenegro', 'Mozambique', 'Namibia', 'Nauru', 'Nepal', 'Nicaragua', 'Níger', 'Nigeria', 'Noruega', 'Nueva Zelanda', 'Omán', 'Países Bajos', 'Pakistán', 'Palaos', 'Palestina', 'Panamá', 'Papúa Nueva Guinea', 'Paraguay', 'Perú', 'Polonia', 'Portugal', 'Reino Unido', 'República Centroafricana', 'República Checa', 'República del Congo', 'República Democrática del Congo', 'República Dominicana', 'Ruanda', 'Rumanía', 'Rusia', 'Samoa', 'San Cristóbal y Nieves', 'San Marino', 'San Vicente y las Granadinas', 'Santa Lucía', 'Santo Tomé y Príncipe', 'Senegal', 'Serbia', 'Seychelles', 'Sierra Leona', 'Singapur', 'Siria', 'Somalia', 'Sri Lanka', 'Sudáfrica', 'Sudán', 'Sudán del Sur', 'Suecia', 'Suiza', 'Surinam', 'Tailandia', 'Tanzania', 'Tayikistán', 'Timor Oriental', 'Togo', 'Tonga', 'Trinidad y Tobago', 'Túnez', 'Turkmenistán', 'Turquía', 'Tuvalu', 'Ucrania', 'Uganda', 'Uruguay', 'Uzbekistán', 'Vanuatu', 'Vaticano', 'Venezuela', 'Vietnam', 'Yemen', 'Yibuti', 'Zambia', 'Zimbabue', 'Otro'
 ]
 
-// Define type for a new room based on Supabase schema
-type NewRoom = Database['public']['Tables']['rooms']['Insert'];
+// Define type for a new room
+type NewRoom = {
+  nombre: string;
+  juego: string;
+  regiones: string[];
+  idiomas: string[];
+  paises: string[];
+  sistemas: string[];
+  min_jugadores: number;
+  max_jugadores: number;
+  creador_id?: string;
+};
 
 interface RoomCreatorProps {
   onRoomCreated?: (roomId?: string) => void; // Callback para refrescar la lista y opcionalmente redirigir a la sala

@@ -1,8 +1,20 @@
-import { Database } from '../supabase.types';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 
-type Room = Database['public']['Tables']['rooms']['Row'];
+// Define Room type directly without importing Database
+type Room = {
+  id: string;
+  nombre: string;
+  juego: string;
+  regiones?: string[];
+  idiomas?: string[];
+  sistemas?: string[];
+  paises?: string[];
+  min_jugadores?: number;
+  max_jugadores?: number;
+  created_at?: string;
+  created_by?: string;
+};
 
 export default function RoomCard({ room }: { room: Room }) {
   const { t } = useTranslation(['rooms', 'common']);

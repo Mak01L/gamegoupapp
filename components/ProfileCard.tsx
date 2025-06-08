@@ -47,7 +47,7 @@ const defaultProfileData: ProfileData = {
   bio: '',
   real_name: '',
   location: '',
-  birthdate: '',
+  birthdate: null,
   privacy: {
     real_name: false,
     location: false,
@@ -94,7 +94,7 @@ export default function ProfileCard() {
       const { data: profileData, error: profileError } = await supabase
         .from('profiles')
         .select('*')
-        .eq('id', user.id)
+        .eq('user_id', user.id)
         .single<ProfileData>(); // Especificar el tipo aquí
 
       if (profileError && profileError.code !== 'PGRST116') { // PGRST116: no rows found
@@ -134,11 +134,37 @@ export default function ProfileCard() {
         };
         setProfile(initialProfile);
 
-        // Guardar el perfil inicial en la base de datos
-        const { error: upsertError } = await supabase.from('profiles').upsert(initialProfile);
-        if (upsertError) {
-          setError('Error al crear el perfil inicial: ' + upsertError.message);
-          // No necesariamente bloquear la UI, el perfil se muestra localmente
+        // Intentar crear el perfil inicial usando INSERT con ON CONFLICT
+        const { error: insertError } = await supabase.from('profiles').insert(initialProfile);
+        if (insertError) {
+          // Si el error es de clave duplicada, significa que el perfil ya existe
+          if (insertError.code === '23505' && insertError.message.includes('profiles_user_id_key')) {
+            console.log('📝 Perfil ya existe, intentando obtenerlo...');
+            // Intentar obtener el perfil existente
+            const { data: existingProfile, error: fetchError } = await supabase
+              .from('profiles')
+              .select('*')
+              .eq('user_id', user.id)
+              .single<ProfileData>();
+            
+            if (fetchError) {
+              setError('Error al obtener el perfil existente: ' + fetchError.message);
+            } else if (existingProfile) {
+              setProfile({
+                ...defaultProfileData,
+                ...existingProfile,
+                username: existingProfile.username || newUsername,
+                email: existingProfile.email || user.email || '',
+                avatar_url: existingProfile.avatar_url || user.user_metadata?.avatar_url || '/logo.png',
+                privacy: existingProfile.privacy || defaultProfileData.privacy,
+                preferences: existingProfile.preferences || defaultProfileData.preferences,
+                stats: existingProfile.stats || defaultProfileData.stats,
+              });
+              setSuccess('Perfil cargado correctamente.');
+            }
+          } else {
+            setError('Error al crear el perfil inicial: ' + insertError.message);
+          }
         } else {
           setSuccess('Perfil inicial creado. ¡Puedes editarlo!');
         }
@@ -192,7 +218,7 @@ export default function ProfileCard() {
       bio: profile.bio,
       real_name: profile.real_name,
       location: profile.location,
-      birthdate: profile.birthdate,
+      birthdate: profile.birthdate === '' ? null : profile.birthdate, // Convertir cadena vacía a null
       privacy: profile.privacy,
       preferences: profile.preferences,
       avatar_url: profile.avatar_url,
@@ -202,7 +228,7 @@ export default function ProfileCard() {
     const { error: upsertError } = await supabase
       .from('profiles')
       .update(profileToSave) // Usar update en lugar de upsert si el ID ya está garantizado
-      .eq('id', sessionUser.id);
+      .eq('user_id', sessionUser.id);
 
     if (upsertError) {
       setError('Error al guardar el perfil: ' + upsertError.message);
@@ -338,7 +364,7 @@ export default function ProfileCard() {
       const { error: updateError } = await supabase
         .from('profiles')
         .update({ avatar_url: newAvatarUrl })
-        .eq('id', sessionUser.id);
+        .eq('user_id', sessionUser.id);
 
       if (updateError) {
         console.error('❌ Error al actualizar perfil:', updateError);
@@ -504,9 +530,19 @@ export default function ProfileCard() {
         <div>
           <label className="block text-violet-400 font-semibold mb-1">{t('profile.birthdate')}</label>
           {editMode ? (
-            <input type="date" className="bg-neutral-900 border border-violet-700 rounded px-2 py-1 w-full text-white" value={profile.birthdate || ''} onChange={e => setProfile(p => ({ ...p, birthdate: e.target.value }))} placeholder={t('profile.birthdate_placeholder')} aria-label="Fecha de nacimiento" />
+            <input 
+              type="date" 
+              className="bg-neutral-900 border border-violet-700 rounded px-2 py-1 w-full text-white" 
+              value={profile.birthdate || ''} 
+              onChange={e => setProfile(p => ({ 
+                ...p, 
+                birthdate: e.target.value === '' ? null : e.target.value 
+              }))} 
+              placeholder={t('profile.birthdate_placeholder')} 
+              aria-label="Fecha de nacimiento" 
+            />
           ) : (
-            <span>{privacy.birthdate ? profile.birthdate : t('profile.private')}</span>
+            <span>{privacy.birthdate ? (profile.birthdate || t('profile.not_specified')) : t('profile.private')}</span>
           )}
           {editMode && (
             <label className="block text-xs mt-1">

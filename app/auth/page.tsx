@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { useAuth } from '../../components/AuthProvider'
 import { useTranslation } from 'react-i18next'
+import AdManager from '../../components/AdManager'
+import { getAdConfig } from '../../lib/adConfig'
 
 export default function AuthPage() {
   const { t } = useTranslation('auth')
@@ -129,39 +131,62 @@ export default function AuthPage() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center">      <div className="w-full flex flex-col items-center justify-center mt-8 mb-4">
-        <Image 
-          src="/logo.png" 
-          alt="GameGoUp Logo" 
-          width={320} 
-          height={320} 
-          priority 
-          className="w-80 h-80"
-          sizes="320px"
-        />
-      </div><h1 className="text-3xl font-bold mb-4 text-violet-400">
-        {isReset ? t('resetPassword') : isLogin ? t('loginTitle') : t('signupTitle')}
-      </h1>
-      <form onSubmit={isReset ? handleReset : handleAuth} className="flex flex-col gap-3 w-80 bg-neutral-900 p-6 rounded-xl border border-violet-700">        {!isLogin && !isReset && (
-          <input
-            type="text"
-            placeholder={t('username')}
-            className="p-2 rounded bg-black border border-violet-500 text-white"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
-            required
-            maxLength={20}
+    <main className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Contenedor principal con grid para posicionar anuncios */}
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-8 items-center px-4">
+        
+        {/* Anuncio lateral izquierdo - Solo visible en pantallas grandes */}
+        <div className="hidden lg:block lg:col-span-1">
+          <AdManager 
+            variant="card"
+            adSlot={getAdConfig('gaming').slot}
+            fallbackAd={{
+              title: 'Únete a GameGoUp',
+              description: 'La mejor comunidad de gamers está esperándote',
+              sponsor: 'GameGoUp Community',
+              link: '#'
+            }}
+            className="w-full"
           />
-        )}        <input
-          type="email"
-          placeholder={t('email')}
-          className="p-2 rounded bg-black border border-violet-500 text-white"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-        />
-        {!isReset && (
-          <>            <input
+        </div>
+
+        {/* Contenido central - Formulario de autenticación */}
+        <div className="lg:col-span-3 flex flex-col items-center justify-center">
+          <div className="w-full flex flex-col items-center justify-center mt-8 mb-4">
+            <Image 
+              src="/logo.png" 
+              alt="GameGoUp Logo" 
+              width={320} 
+              height={320} 
+              priority 
+              className="w-80 h-80"
+              sizes="320px"
+            />
+          </div>
+
+          <h1 className="text-3xl font-bold mb-4 text-violet-400">
+            {isReset ? t('resetPassword') : isLogin ? t('loginTitle') : t('signupTitle')}
+          </h1>
+          <form onSubmit={isReset ? handleReset : handleAuth} className="flex flex-col gap-3 w-80 bg-neutral-900 p-6 rounded-xl border border-violet-700">        {!isLogin && !isReset && (
+            <input
+              type="text"
+              placeholder={t('username')}
+              className="p-2 rounded bg-black border border-violet-500 text-white"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+              maxLength={20}
+            />
+          )}        <input
+            type="email"
+            placeholder={t('email')}
+            className="p-2 rounded bg-black border border-violet-500 text-white"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+          />
+          {!isReset && (
+            <>            <input
               type="password"
               placeholder={t('password')}
               className="p-2 rounded bg-black border border-violet-500 text-white"
@@ -224,6 +249,38 @@ export default function AuthPage() {
           </button>
         </div>
       </form>
+
+      {/* Anuncio inferior en móviles - Solo visible en pantallas pequeñas */}
+      <div className="lg:hidden mt-8 w-full max-w-sm">
+        <AdManager 
+          variant="card"
+          adSlot={getAdConfig('tech').slot}
+          fallbackAd={{
+            title: 'GameGoUp Pro',
+            description: 'Funciones premium para una experiencia gaming superior',
+            sponsor: 'GameGoUp',
+            link: '#'
+          }}
+          className="w-full"
+        />
+      </div>
+    </div>
+
+        {/* Anuncio lateral derecho - Solo visible en pantallas grandes */}
+        <div className="hidden lg:block lg:col-span-1">
+          <AdManager 
+            variant="card"
+            adSlot={getAdConfig('tech').slot}
+            fallbackAd={{
+              title: 'GameGoUp Pro',
+              description: 'Funciones premium para una experiencia gaming superior',
+              sponsor: 'GameGoUp',
+              link: '#'
+            }}
+            className="w-full"
+          />
+        </div>
+      </div>
     </main>
   )
 }

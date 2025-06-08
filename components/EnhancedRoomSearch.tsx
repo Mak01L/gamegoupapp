@@ -17,19 +17,110 @@ export default function EnhancedRoomSearch() {
   const [filters, setFilters] = useState<SearchFilters>({
     juego: '',
     regiones: [],
-    idiomas: [],
-    paises: [],
+    idiomas: [],    paises: [],
     sistemas: [],
     soloConUsuarios: false,
     ordenarPor: 'usuarios'
   })
   const router = useRouter()
 
-  // Opciones para los filtros
+  // Lista extendida de juegos online populares organizados por categorías
   const juegosPopulares = [
-    'Valorant', 'League of Legends', 'CS2', 'Overwatch 2', 'Apex Legends',
-    'Fortnite', 'Rocket League', 'FIFA 24', 'Call of Duty', 'Minecraft',
-    'Among Us', 'Fall Guys', 'Genshin Impact', 'Destiny 2', 'Rainbow Six Siege'
+    // 🔥 TOP TIER - Los más populares 2024
+    'Valorant', 'League of Legends', 'Counter-Strike 2', 'Fortnite', 'Apex Legends', 
+    'Minecraft', 'Roblox', 'Call of Duty: Modern Warfare III', 'Overwatch 2', 'PUBG',
+    'Rocket League', 'Genshin Impact', 'FIFA 24', 'Dota 2', 'Among Us',
+    
+    // 🎮 BATTLE ROYALE
+    'Fall Guys', 'Warzone', 'Naraka: Bladepoint', 'Super People', 'The Finals',
+    'Hunt: Showdown 1896', 'Vampire: The Masquerade - Bloodhunt', 'Darwin Project',
+    
+    // ⚔️ FPS & SHOOTERS  
+    'Rainbow Six Siege', 'Escape from Tarkov', 'Team Fortress 2', 'Paladins',
+    'Splitgate', 'Enlisted', 'World War 3', 'Hell Let Loose', 'Deep Rock Galactic',
+    'Left 4 Dead 2', 'Payday 3', 'Insurgency: Sandstorm', 'Ready or Not',
+    'Battlefield 2042', 'Star Wars Battlefront II', 'Destiny 2', 'Halo Infinite',
+    'The Cycle: Frontier', 'Phantom Forces', 'Krunker.io', 'Shell Shockers',
+    
+    // 🏆 ESPORTS & MOBA
+    'Smite', 'Heroes of Newerth', 'Mobile Legends: Bang Bang', 'Wild Rift',
+    'Arena of Valor', 'Pokemon Unite', 'Brawl Stars', 'Clash Royale',
+    
+    // 🌍 MMORPG & RPG
+    'World of Warcraft', 'Final Fantasy XIV', 'Guild Wars 2', 'Black Desert Online',
+    'New World', 'Lost Ark', 'Elder Scrolls Online', 'Star Wars: The Old Republic',
+    'RuneScape', 'Old School RuneScape', 'MapleStory', 'Path of Exile',
+    'Diablo IV', 'Diablo II: Resurrected', 'Albion Online', 'EVE Online',
+    'Blade & Soul', 'Lineage 2', 'Aion', 'TERA', 'Archeage', 'Neverwinter',
+    'DC Universe Online', 'Lord of the Rings Online', 'Age of Conan',
+    
+    // 🏗️ SURVIVAL & SANDBOX
+    'Rust', 'ARK: Survival Evolved', 'DayZ', 'Green Hell', 'The Forest',
+    'Subnautica', 'Raft', 'Valheim', 'Project Zomboid', 'Unturned', 'Scum',
+    'V Rising', 'Conan Exiles', 'Astroneer', 'No Man\'s Sky', 'Satisfactory',
+    'Terraria', 'Starbound', 'Core Keeper', 'Grounded', '7 Days to Die',
+    
+    // 🚗 RACING & SPORTS
+    'Forza Horizon 5', 'Gran Turismo 7', 'F1 23', 'Dirt Rally 2.0',
+    'Need for Speed Heat', 'Wreckfest', 'BeamNG.drive', 'Assetto Corsa',
+    'iRacing', 'rFactor 2', 'Mario Kart 8 Deluxe', 'Burnout Paradise',
+    
+    // 🧩 PUZZLE & PARTY
+    'It Takes Two', 'Human: Fall Flat', 'Gang Beasts', 'Moving Out',
+    'Overcooked! 2', 'Phasmophobia', 'Devour', 'Dead by Daylight',
+    'Friday the 13th', 'Identity V', 'Jackbox Party Pack', 'Uno',
+    
+    // 🃏 STRATEGY & CARD GAMES
+    'Age of Empires IV', 'Civilization VI', 'Total War: Warhammer III',
+    'StarCraft II', 'Command & Conquer Remastered', 'Crusader Kings III',
+    'Europa Universalis IV', 'Hearts of Iron IV', 'Stellaris',
+    'Hearthstone', 'Magic: The Gathering Arena', 'Legends of Runeterra',
+    'Gwent', 'Yu-Gi-Oh! Master Duel', 'Poker', 'Chess.com',
+    
+    // 📱 MOBILE GAMES
+    'Call of Duty Mobile', 'PUBG Mobile', 'Free Fire', 'Clash of Clans',
+    'Clash Royale', 'Hay Day', 'Boom Beach', 'Supercell Games',
+    'Candy Crush Saga', 'Pokémon GO', 'Dragon Ball Legends',
+    'Marvel Contest of Champions', 'Fate/Grand Order', 'Azur Lane',
+    
+    // 🥽 VR GAMES
+    'Beat Saber', 'Half-Life: Alyx', 'VRChat', 'Rec Room', 'Horizon Worlds',
+    'Pavlov VR', 'Onward', 'Population: One', 'Phasmophobia VR',
+    
+    // 🎌 ASIAN POPULAR
+    'Honor of Kings', 'Honkai: Star Rail', 'Wuthering Waves', 'Tower of Fantasy',
+    'Blue Archive', 'Arknights', 'Princess Connect! Re:Dive', 'Granblue Fantasy',
+    'Uma Musume', 'Punishing: Gray Raven', 'Neural Cloud', 'Girls\' Frontline',
+    
+    // 🎨 INDIE & UNIQUE
+    'Hollow Knight', 'Celeste', 'Hades', 'Dead Cells', 'Ori and the Will of the Wisps',
+    'Cuphead', 'Undertale', 'Stardew Valley', 'Don\'t Starve Together',
+    'Risk of Rain 2', 'Gunfire Reborn', 'Enter the Gungeon', 'The Binding of Isaac',
+    
+    // 🌐 BROWSER & IO GAMES
+    'Agar.io', 'Slither.io', 'Diep.io', 'Wings.io', 'Zombs Royale',
+    'Surviv.io', 'Paper.io 2', 'Hole.io', 'Shell Shockers', 'Krunker.io',
+    
+    // 🏢 SIMULATION & MANAGEMENT
+    'Cities: Skylines', 'Planet Coaster', 'Two Point Hospital', 'Planet Zoo',
+    'Anno 1800', 'Tropico 6', 'Frostpunk', 'Prison Architect',
+    'RimWorld', 'Factorio', 'Oxygen Not Included', 'Kerbal Space Program',
+    
+    // 👾 CLASSIC & RETRO
+    'Counter-Strike 1.6', 'Quake Live', 'Unreal Tournament', 'Doom Eternal',
+    'Half-Life 2: Deathmatch', 'Garry\'s Mod', 'Team Fortress Classic',
+    'Age of Empires II: Definitive Edition', 'StarCraft: Brood War',
+    
+    // 🚀 UPCOMING & EARLY ACCESS
+    'Baldur\'s Gate 3', 'Palworld', 'Lethal Company', 'Content Warning',
+    'The First Descendant', 'Once Human', 'Throne and Liberty', 'Blue Protocol',
+    
+    // 📺 STREAMING & CONTENT
+    'Twitch Plays', 'Marbles on Stream', 'Stream Raiders', 'Crowd Control',
+    'StreamLabs Games', 'OBS Virtual Camera Games',
+    
+    // 🎯 OTROS
+    'Otros juegos', 'Juego personalizado', 'No especificado'
   ]
 
   const regiones = ['NA', 'EU', 'LATAM', 'BR', 'KR', 'JP', 'OCE', 'CN', 'SEA']
