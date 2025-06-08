@@ -4,7 +4,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { User } from '@supabase/supabase-js';
-import { Database } from '../supabase.types';
 
 // Define types for chat messages (with user profile info)
 interface ChatMessage {
