@@ -1,0 +1,27 @@
+# ads.txt file for GameGoUp - Google AdSense Verification
+# This file authorizes Google AdSense to serve ads on this domain
+# Format: adnetwork.com, publisherid, DIRECT/RESELLER, certificationauthorityid
+
+# Google AdSense - DIRECT relationship
+# Publisher ID from AdSense account: ca-pub-7274762890410296
+google.com, ca-pub-7274762890410296, DIRECT, f08c47fec0942fa0
+
+# Google Ad Manager (DoubleClick for Publishers)
+google.com, ca-pub-7274762890410296, DIRECT, f08c47fec0942fa0
+doubleclick.net, ca-pub-7274762890410296, DIRECT, f08c47fec0942fa0
+
+# Additional authorized partners (optional - add only if you use them)
+# Example entries for common ad networks:
+# amazon.com, XXXXXX, DIRECT
+# indexexchange.com, XXXXXX, RESELLER, 50b1c356f2c5c8fc
+# openx.com, XXXXXX, RESELLER, 6ac7fd6be16bed7b
+# pubmatic.com, XXXXXX, RESELLER, 5d62403b186f2ace
+# rubiconproject.com, XXXXXX, RESELLER, 0bfd66d529a55807
+
+# Instructions:
+# 1. Replace 'pub-XXXXXXXXXXXXXXXXX' with your actual Google AdSense Publisher ID
+# 2. You can find your Publisher ID in your AdSense account dashboard
+# 3. It typically looks like: pub-1234567890123456
+# 4. Keep the certification authority ID 'f08c47fec0942fa0' for Google
+# 5. Only add additional networks if you actually use them
+# 6. This file must be accessible at: https://gamgoup.space/ads.txt
