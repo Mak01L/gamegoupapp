@@ -117,10 +117,10 @@ export default function AdManager({
   if (useAdSense && adSenseReady && !adBlocked) {
     if (variant === 'banner') {
       return (
-        <div className={`bg-neutral-900/40 border border-neutral-700/30 rounded-xl p-4 ${className}`}>
+        <div className={`bg-neutral-900/40 border border-green-700/30 rounded-xl p-4 ${className}`}>
           <div className="text-center mb-3">
-            <span className="text-xs text-gray-400 uppercase tracking-wide">
-              Publicidad
+            <span className="text-xs text-green-400 uppercase tracking-wide">
+              🎮 Contenido Patrocinado - Google AdSense
             </span>
           </div>
           <GoogleAdSense 
@@ -134,10 +134,10 @@ export default function AdManager({
 
     if (variant === 'sidebar') {
       return (
-        <div className={`bg-neutral-900/40 border border-neutral-700/30 rounded-xl p-3 ${className}`}>
+        <div className={`bg-neutral-900/40 border border-green-700/30 rounded-xl p-3 ${className}`}>
           <div className="text-center mb-2">
-            <span className="text-xs text-gray-400 uppercase tracking-wide">
-              Publicidad
+            <span className="text-xs text-green-400 uppercase tracking-wide">
+              🎮 Contenido Patrocinado - Google AdSense
             </span>
           </div>
           <GoogleAdSense 
@@ -151,10 +151,10 @@ export default function AdManager({
 
     // variant === 'card'
     return (
-      <div className={`bg-neutral-900/40 border border-neutral-700/30 rounded-xl p-4 ${className}`}>
+      <div className={`bg-neutral-900/40 border border-green-700/30 rounded-xl p-4 ${className}`}>
         <div className="text-center mb-3">
-          <span className="text-xs text-gray-400 uppercase tracking-wide">
-            Publicidad
+          <span className="text-xs text-green-400 uppercase tracking-wide">
+            🎮 Contenido Patrocinado - Google AdSense
           </span>
         </div>
         <GoogleAdSense 
@@ -177,8 +177,8 @@ export default function AdManager({
             <div className="text-3xl">🎮</div>
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs text-gray-500 uppercase tracking-wide">
-                  Contenido Patrocinado
+                <span className="text-xs text-green-400 uppercase tracking-wide">
+                  🎮 Contenido Patrocinado - Google AdSense (Fallback)
                 </span>
                 <span className="text-xs text-gray-600">•</span>
                 <span className="text-xs text-gray-500">
@@ -210,8 +210,8 @@ export default function AdManager({
         className={`bg-gradient-to-b from-violet-900/20 to-blue-900/20 border border-violet-700/50 rounded-xl p-3 ${className}`}
       >
         <div className="text-center mb-2">
-          <span className="text-xs text-gray-500 uppercase tracking-wide">
-            Contenido Patrocinado
+          <span className="text-xs text-green-400 uppercase tracking-wide">
+            🎮 Contenido Patrocinado - Google AdSense (Fallback)
           </span>
         </div>
         <div className="text-center mb-3">
@@ -239,8 +239,8 @@ export default function AdManager({
       className={`bg-neutral-900 border border-neutral-700 rounded-xl p-4 group hover:border-neutral-600 transition-colors ${className}`}
     >
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-xs text-gray-500 uppercase tracking-wide">
-          Contenido Patrocinado
+        <span className="text-xs text-green-400 uppercase tracking-wide">
+          🎮 Contenido Patrocinado - Google AdSense (Fallback)
         </span>
         <span className="text-xs text-gray-600">•</span>
         <span className="text-xs text-gray-500">{currentFallback.sponsor}</span>

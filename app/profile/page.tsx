@@ -33,14 +33,14 @@ export default function ProfilePage() {
               <ProfileCard />
             </div>
 
-            {/* Publicidad en perfil */}
+            {/* Publicidad Google AdSense en perfil */}
             <div className="flex justify-center px-4 mt-8">
-              <AdWidget variant="banner" className="max-w-[728px] w-full" />
+              <AdWidget variant="banner" className="max-w-[728px] w-full" useAdsense={true} type="adsense" />
             </div>
 
-            {/* Publicidad lateral */}
+            {/* Publicidad lateral Google AdSense */}
             <div className="flex justify-center px-4 mt-4">
-              <AdWidget variant="card" className="max-w-[320px] w-full" />
+              <AdWidget variant="card" className="max-w-[320px] w-full" useAdsense={true} type="adsense" />
             </div>
           </div>
         </div>

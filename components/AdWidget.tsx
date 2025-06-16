@@ -83,8 +83,8 @@ const sampleAds: AdSpace[] = [
 export default function AdWidget({
   className = '',
   variant = 'card',
-  type = 'gaming',
-  useAdsense = false,
+  type = 'adsense',
+  useAdsense = true,
 }: AdWidgetProps) {
   const { t } = useTranslation('common')
   const [currentAd, setCurrentAd] = useState<AdSpace | null>(null)

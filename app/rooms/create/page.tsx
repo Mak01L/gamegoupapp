@@ -45,9 +45,9 @@ export default function CreateRoomPage() {
               <RoomCreator onRoomCreated={handleRoomCreated} />
             </div>
 
-            {/* Publicidad después de crear sala */}
+            {/* Publicidad Google AdSense después de crear sala */}
             <div className="flex justify-center px-4 mt-8">
-              <AdWidget variant="banner" className="max-w-[728px] w-full" />
+              <AdWidget variant="banner" className="max-w-[728px] w-full" useAdsense={true} type="adsense" />
             </div>
           </div>
         </div>

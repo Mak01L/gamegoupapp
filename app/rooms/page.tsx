@@ -216,9 +216,9 @@ export default function RoomsPage() {
               </p>
             </div>{' '}
             
-            {/* Publicidad antes de la lista de salas */}
+            {/* Publicidad Google AdSense antes de la lista de salas */}
             <div className="flex justify-center px-4 py-2">
-              <AdWidget variant="banner" className="max-w-[728px] w-full" />
+              <AdWidget variant="banner" className="max-w-[728px] w-full" useAdsense={true} type="adsense" />
             </div>
             
             {/* Rooms List */}
