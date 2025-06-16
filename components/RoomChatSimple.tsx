@@ -37,7 +37,10 @@ export default function RoomChatSimple({ roomId }: RoomChatSimpleProps) {
     const initializeRoom = async () => {
       try {
         // Obtener usuario actual
-        const { data: { user }, error: userError } = await supabase.auth.getUser()
+        const {
+          data: { user },
+          error: userError,
+        } = await supabase.auth.getUser()
         if (userError) throw userError
         setUser(user)
 
@@ -48,10 +51,10 @@ export default function RoomChatSimple({ roomId }: RoomChatSimpleProps) {
 
         // Cargar información de la sala
         await loadRoomInfo()
-        
+
         // Verificar si las tablas de chat existen
         await checkChatTablesSetup()
-        
+
         setLoading(false)
       } catch (err) {
         console.error('Error inicializando sala:', err)
@@ -126,9 +129,12 @@ export default function RoomChatSimple({ roomId }: RoomChatSimpleProps) {
         <div className="bg-violet-800/20 border border-violet-500 rounded-xl p-6 mb-6">
           <div className="flex justify-between items-start mb-4">
             <div>
-              <h1 className="text-3xl font-bold text-violet-300 mb-2">{room.nombre}</h1>
+              <h1 className="text-3xl font-bold text-violet-300 mb-2">
+                {room.nombre}
+              </h1>
               <p className="text-lg text-white">🎮 {room.juego}</p>
-            </div>            <button
+            </div>{' '}
+            <button
               onClick={handleLeaveRoom}
               className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-all duration-200 font-medium text-sm flex items-center gap-2 hover:scale-105"
               title={t('leaveRoom')}
@@ -141,11 +147,15 @@ export default function RoomChatSimple({ roomId }: RoomChatSimpleProps) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
             <div>
               <span className="text-gray-300">🌍 Regiones:</span>
-              <p className="text-white">{room.regiones?.join(', ') || 'Todas'}</p>
+              <p className="text-white">
+                {room.regiones?.join(', ') || 'Todas'}
+              </p>
             </div>
             <div>
               <span className="text-gray-300">🗣️ Idiomas:</span>
-              <p className="text-white">{room.idiomas?.join(', ') || 'Todos'}</p>
+              <p className="text-white">
+                {room.idiomas?.join(', ') || 'Todos'}
+              </p>
             </div>
             <div>
               <span className="text-gray-300">🏳️ Países:</span>
@@ -153,14 +163,18 @@ export default function RoomChatSimple({ roomId }: RoomChatSimpleProps) {
             </div>
             <div>
               <span className="text-gray-300">💻 Sistemas:</span>
-              <p className="text-white">{room.sistemas?.join(', ') || 'Todos'}</p>
+              <p className="text-white">
+                {room.sistemas?.join(', ') || 'Todos'}
+              </p>
             </div>
           </div>
 
           {room.min_jugadores && room.max_jugadores && (
             <div className="mt-2">
               <span className="text-gray-300">👥 Jugadores:</span>
-              <span className="text-white ml-2">{room.min_jugadores}-{room.max_jugadores}</span>
+              <span className="text-white ml-2">
+                {room.min_jugadores}-{room.max_jugadores}
+              </span>
             </div>
           )}
         </div>
@@ -177,11 +191,14 @@ export default function RoomChatSimple({ roomId }: RoomChatSimpleProps) {
                     Configuración Pendiente
                   </h2>
                   <p className="text-gray-300 mb-6 max-w-md">
-                    Las tablas de chat en tiempo real necesitan ser configuradas. 
-                    Por favor, ejecuta el script SQL en Supabase Dashboard.
+                    Las tablas de chat en tiempo real necesitan ser
+                    configuradas. Por favor, ejecuta el script SQL en Supabase
+                    Dashboard.
                   </p>
                   <div className="bg-neutral-800 p-4 rounded-lg text-left">
-                    <p className="text-sm text-gray-400 mb-2">Pasos a seguir:</p>
+                    <p className="text-sm text-gray-400 mb-2">
+                      Pasos a seguir:
+                    </p>
                     <ol className="text-sm text-white space-y-1">
                       <li>1. Ve a Supabase Dashboard</li>
                       <li>2. Abre el SQL Editor</li>
@@ -203,7 +220,8 @@ export default function RoomChatSimple({ roomId }: RoomChatSimpleProps) {
                     Chat en Tiempo Real
                   </h2>
                   <p className="text-gray-300">
-                    El chat estará disponible una vez que se complete la configuración.
+                    El chat estará disponible una vez que se complete la
+                    configuración.
                   </p>
                 </div>
               )}
@@ -218,18 +236,26 @@ export default function RoomChatSimple({ roomId }: RoomChatSimpleProps) {
                   📋 Información de la Sala
                 </h3>
               </div>
-              
+
               <div className="flex-1 p-4 space-y-4">
                 <div className="bg-neutral-800/50 rounded-lg p-4">
-                  <h4 className="text-violet-300 font-medium mb-2">🏷️ Detalles</h4>
+                  <h4 className="text-violet-300 font-medium mb-2">
+                    🏷️ Detalles
+                  </h4>
                   <div className="space-y-2 text-sm">
-                    <p><span className="text-gray-400">Creada:</span></p>
-                    <p className="text-white">{new Date(room.created_at).toLocaleDateString()}</p>
+                    <p>
+                      <span className="text-gray-400">Creada:</span>
+                    </p>
+                    <p className="text-white">
+                      {new Date(room.created_at).toLocaleDateString()}
+                    </p>
                   </div>
                 </div>
 
                 <div className="bg-neutral-800/50 rounded-lg p-4">
-                  <h4 className="text-violet-300 font-medium mb-2">⚙️ Configuración</h4>
+                  <h4 className="text-violet-300 font-medium mb-2">
+                    ⚙️ Configuración
+                  </h4>
                   <div className="space-y-2 text-sm text-gray-300">
                     <p>📡 Chat en tiempo real</p>
                     <p>👥 Lista de usuarios activos</p>
@@ -239,10 +265,14 @@ export default function RoomChatSimple({ roomId }: RoomChatSimpleProps) {
                 </div>
 
                 <div className="bg-neutral-800/50 rounded-lg p-4">
-                  <h4 className="text-violet-300 font-medium mb-2">📊 Estado</h4>
+                  <h4 className="text-violet-300 font-medium mb-2">
+                    📊 Estado
+                  </h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-2">
-                      <div className={`w-3 h-3 rounded-full ${setupComplete ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                      <div
+                        className={`w-3 h-3 rounded-full ${setupComplete ? 'bg-green-500' : 'bg-red-500'}`}
+                      ></div>
                       <span className="text-white">
                         {setupComplete ? 'Chat Activo' : 'Setup Pendiente'}
                       </span>

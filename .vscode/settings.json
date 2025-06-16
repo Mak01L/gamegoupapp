@@ -1,0 +1,47 @@
+{
+  "typescript.validate.enable": false,
+  "javascript.validate.enable": false,
+  "eslint.enable": false,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "json.validate.enable": false,
+  "problems.decorations.enabled": false,
+  "typescript.showUnused": false,
+  "typescript.suggest.autoImports": false,
+  "typescript.preferences.includePackageJsonAutoImports": "off",
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {},
+  "files.exclude": {
+    "**/*.backup.*": true,
+    "**/*.simple.*": true,
+    "**/*.debug.*": true,
+    "**/*.fixed.*": true,
+    ".next": true,
+    "node_modules": true,
+    "*.log": true
+  },
+  "search.exclude": {
+    "**/*.backup.*": true,
+    "**/*.simple.*": true,
+    "**/*.debug.*": true,
+    "**/*.fixed.*": true,
+    ".next": true,
+    "node_modules": true
+  },
+  "typescript.preferences.quoteStyle": "single",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+  "editor.suggestOnTriggerCharacters": false,
+  "editor.wordBasedSuggestions": "off",
+  "editor.suggest.showSnippets": false,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "typescript.surveys.enabled": false
+}

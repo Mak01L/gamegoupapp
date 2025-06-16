@@ -36,7 +36,10 @@ export default function RoomChatBasic({ roomId }: RoomChatProps) {
     const initializeRoom = async () => {
       try {
         // Obtener usuario actual
-        const { data: { user }, error: userError } = await supabase.auth.getUser()
+        const {
+          data: { user },
+          error: userError,
+        } = await supabase.auth.getUser()
         if (userError) throw userError
         setUser(user)
 
@@ -47,7 +50,7 @@ export default function RoomChatBasic({ roomId }: RoomChatProps) {
 
         // Cargar información de la sala
         await loadRoomInfo()
-        
+
         setLoading(false)
       } catch (err) {
         console.error('Error inicializando sala:', err)
@@ -105,9 +108,12 @@ export default function RoomChatBasic({ roomId }: RoomChatProps) {
         <div className="bg-violet-800/20 border border-violet-500 rounded-xl p-6 mb-6">
           <div className="flex justify-between items-start mb-4">
             <div>
-              <h1 className="text-3xl font-bold text-violet-300 mb-2">{room.nombre}</h1>
+              <h1 className="text-3xl font-bold text-violet-300 mb-2">
+                {room.nombre}
+              </h1>
               <p className="text-lg text-white">🎮 {room.juego}</p>
-            </div>            <button
+            </div>{' '}
+            <button
               onClick={handleLeaveRoom}
               className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-all duration-200 font-medium text-sm flex items-center gap-2 hover:scale-105"
               title={t('roomChat.leaveRoom')}
@@ -120,26 +126,40 @@ export default function RoomChatBasic({ roomId }: RoomChatProps) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
             <div>
               <span className="text-gray-300">🌍 {t('roomChat.regions')}:</span>
-              <p className="text-white">{room.regiones?.join(', ') || t('roomChat.all')}</p>
+              <p className="text-white">
+                {room.regiones?.join(', ') || t('roomChat.all')}
+              </p>
             </div>
             <div>
-              <span className="text-gray-300">🗣️ {t('roomChat.languages')}:</span>
-              <p className="text-white">{room.idiomas?.join(', ') || t('roomChat.all')}</p>
+              <span className="text-gray-300">
+                🗣️ {t('roomChat.languages')}:
+              </span>
+              <p className="text-white">
+                {room.idiomas?.join(', ') || t('roomChat.all')}
+              </p>
             </div>
             <div>
-              <span className="text-gray-300">🏳️ {t('roomChat.countries')}:</span>
-              <p className="text-white">{room.paises?.join(', ') || t('roomChat.all')}</p>
+              <span className="text-gray-300">
+                🏳️ {t('roomChat.countries')}:
+              </span>
+              <p className="text-white">
+                {room.paises?.join(', ') || t('roomChat.all')}
+              </p>
             </div>
             <div>
               <span className="text-gray-300">💻 {t('roomChat.systems')}:</span>
-              <p className="text-white">{room.sistemas?.join(', ') || t('roomChat.all')}</p>
+              <p className="text-white">
+                {room.sistemas?.join(', ') || t('roomChat.all')}
+              </p>
             </div>
           </div>
 
           {room.min_jugadores && room.max_jugadores && (
             <div className="mt-2">
               <span className="text-gray-300">👥 {t('roomChat.players')}:</span>
-              <span className="text-white ml-2">{room.min_jugadores}-{room.max_jugadores}</span>
+              <span className="text-white ml-2">
+                {room.min_jugadores}-{room.max_jugadores}
+              </span>
             </div>
           )}
         </div>
@@ -149,13 +169,17 @@ export default function RoomChatBasic({ roomId }: RoomChatProps) {
           <div className="lg:col-span-3">
             <div className="bg-neutral-900/50 border border-violet-500 rounded-xl h-[600px] flex flex-col">
               <div className="p-4 border-b border-violet-500">
-                <h2 className="text-xl font-semibold text-violet-300">💬 {t('roomChat.roomChat')}</h2>
+                <h2 className="text-xl font-semibold text-violet-300">
+                  💬 {t('roomChat.roomChat')}
+                </h2>
               </div>
 
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-center text-gray-400">
                   <div className="text-6xl mb-4">🚧</div>
-                  <h3 className="text-xl mb-2">{t('roomChat.chatInDevelopment')}</h3>
+                  <h3 className="text-xl mb-2">
+                    {t('roomChat.chatInDevelopment')}
+                  </h3>
                   <p className="text-sm max-w-md">
                     {t('roomChat.realTimeChatActivation')}
                     <br />
@@ -191,13 +215,11 @@ export default function RoomChatBasic({ roomId }: RoomChatProps) {
                   👥 {t('roomChat.usersInRoom')}
                 </h3>
               </div>
-              
+
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-center text-gray-400">
                   <div className="text-4xl mb-2">👤</div>
-                  <p className="text-sm">
-                    {t('roomChat.userListComingSoon')}
-                  </p>
+                  <p className="text-sm">{t('roomChat.userListComingSoon')}</p>
                 </div>
               </div>
             </div>
@@ -206,17 +228,25 @@ export default function RoomChatBasic({ roomId }: RoomChatProps) {
 
         {/* Instrucciones para configurar la base de datos */}
         <div className="mt-6 bg-yellow-900/20 border border-yellow-500 rounded-xl p-4">
-          <h3 className="text-yellow-300 font-semibold mb-2">🔧 {t('roomChat.requiredConfiguration')}</h3>
+          <h3 className="text-yellow-300 font-semibold mb-2">
+            🔧 {t('roomChat.requiredConfiguration')}
+          </h3>
           <p className="text-yellow-100 text-sm mb-2">
             {t('roomChat.activateRealTimeChat')}
-            <code className="bg-yellow-800/30 px-1 rounded">supabase-chat-setup.sql</code> 
+            <code className="bg-yellow-800/30 px-1 rounded">
+              supabase-chat-setup.sql
+            </code>
             {t('roomChat.inSupabaseSQLEditor')}
           </p>
           <div className="text-xs text-yellow-200">
-            1. {t('roomChat.goToSupabaseDashboard')}<br/>
-            2. {t('roomChat.selectYourProject')}<br/>
-            3. {t('roomChat.goToSQL')}<br/>
-            4. {t('roomChat.copyAndPasteScript')}<br/>
+            1. {t('roomChat.goToSupabaseDashboard')}
+            <br />
+            2. {t('roomChat.selectYourProject')}
+            <br />
+            3. {t('roomChat.goToSQL')}
+            <br />
+            4. {t('roomChat.copyAndPasteScript')}
+            <br />
             5. {t('roomChat.executeScript')}
           </div>
         </div>

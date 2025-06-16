@@ -1,0 +1,16 @@
+// app/profile/page.tsx
+'use client'
+
+import ProfileCard from '../../components/ProfileCard'
+import { useTranslation } from 'react-i18next'
+
+export default function ProfilePage() {
+  const { t } = useTranslation('profile');
+
+  return (
+    <main className="min-h-screen flex flex-col items-center justify-center">
+      <h1 className="text-3xl font-bold mb-4 text-violet-400">{t('title')}</h1>
+      <ProfileCard />
+    </main>
+  );
+}

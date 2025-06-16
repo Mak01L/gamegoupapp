@@ -30,4 +30,5 @@ npm run dev
 > Configura tu archivo `.env.local` con las claves de Supabase (ya incluido).
 
 ---
+
 Made for gamers 💀

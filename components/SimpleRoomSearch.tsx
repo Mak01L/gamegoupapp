@@ -37,7 +37,7 @@ export default function SimpleRoomSearch() {
         .limit(20)
 
       console.log('📊 Resultado:', { data, error })
-      
+
       if (error) {
         console.error('❌ Error:', error)
         setError(`Error al cargar salas: ${error.message}`)
@@ -52,7 +52,7 @@ export default function SimpleRoomSearch() {
   }
   useEffect(() => {
     fetchRooms()
-    
+
     // Configurar suscripción realtime para nuevas salas
     const channel = supabase
       .channel('rooms_changes')
@@ -61,7 +61,7 @@ export default function SimpleRoomSearch() {
         {
           event: '*',
           schema: 'public',
-          table: 'rooms'
+          table: 'rooms',
         },
         (payload) => {
           console.log('🔄 Cambio en salas detectado:', payload)
@@ -84,7 +84,9 @@ export default function SimpleRoomSearch() {
     return <div className="text-red-400 text-center">{error}</div>
   }
   return (
-    <div className="p-4 text-white max-w-4xl mx-auto">      <div className="flex justify-between items-center mb-4">
+    <div className="p-4 text-white max-w-4xl mx-auto">
+      {' '}
+      <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl">🔍 {t('rooms.availableRooms')}</h2>
         <button
           onClick={() => {
@@ -97,32 +99,46 @@ export default function SimpleRoomSearch() {
           🔄 {t('common.refresh')}
         </button>
       </div>
-      
-      <div className="grid gap-4">        {rooms.length === 0 ? (
+      <div className="grid gap-4">
+        {' '}
+        {rooms.length === 0 ? (
           <div className="text-center text-gray-400 py-8">
             {t('rooms.noRoomsAvailable')}
           </div>
         ) : (
           rooms.map((room) => (
-            <div key={room.id} className="p-4 bg-violet-800/20 border border-violet-500 rounded-xl">
+            <div
+              key={room.id}
+              className="p-4 bg-violet-800/20 border border-violet-500 rounded-xl"
+            >
               <div className="text-lg font-bold text-violet-300 mb-2">
                 {room.nombre}
               </div>
-              
+
               <div className="text-sm text-gray-300 space-y-1 mb-3">
-                <p>🎮 <span className="text-white">{room.juego}</span></p>
+                <p>
+                  🎮 <span className="text-white">{room.juego}</span>
+                </p>
                 <p>🌍 {room.regiones?.join(', ')}</p>
                 <p>🗣️ {room.idiomas?.join(', ')}</p>
                 <p>💻 {room.sistemas?.join(', ')}</p>
-                <p>🏳️ {room.paises?.join(', ')}</p>                {room.min_jugadores && room.max_jugadores && (
-                  <p>👥 {t('rooms.card.playersCount', { min: room.min_jugadores, max: room.max_jugadores })}</p>
+                <p>🏳️ {room.paises?.join(', ')}</p>{' '}
+                {room.min_jugadores && room.max_jugadores && (
+                  <p>
+                    👥{' '}
+                    {t('rooms.card.playersCount', {
+                      min: room.min_jugadores,
+                      max: room.max_jugadores,
+                    })}
+                  </p>
                 )}
               </div>
-              
+
               <div className="text-xs text-gray-500 mb-3">
-                {t('rooms.createdOn')}: {new Date(room.created_at).toLocaleDateString()}
+                {t('rooms.createdOn')}:{' '}
+                {new Date(room.created_at).toLocaleDateString()}
               </div>
-              
+
               <button
                 onClick={() => router.push(`/room/${room.id}`)}
                 className="w-full bg-violet-600 hover:bg-violet-700 text-white py-2 px-4 rounded-lg transition-colors font-medium"
@@ -133,7 +149,7 @@ export default function SimpleRoomSearch() {
           ))
         )}
       </div>
-        <div className="mt-6 text-center">
+      <div className="mt-6 text-center">
         <button
           onClick={() => router.push('/rooms/create')}
           className="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-lg transition-colors font-medium"

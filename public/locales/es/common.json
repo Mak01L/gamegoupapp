@@ -1,11 +1,12 @@
-{  "navigation": {
-    "dashboard": "Panel de control",
+﻿{
+  "navigation": {
+    "dashboard": "Dashboard",
     "profile": "Perfil",
     "rooms": "Salas",
-    "createRoom": "Crear sala",
-    "logout": "Cerrar sesión",
-    "login": "Iniciar sesión",
-    "backToRoomSearch": "Volver a buscar salas"
+    "createRoom": "Crear Sala",
+    "logout": "Cerrar Sesión",
+    "login": "Iniciar Sesión",
+    "backToRoomSearch": "Volver a búsqueda de salas"
   },
   "buttons": {
     "save": "Guardar",
@@ -20,7 +21,7 @@
     "clear": "Limpiar",
     "send": "Enviar",
     "back": "Volver",
-    "refresh": "Refrescar"
+    "refresh": "Actualizar"
   },
   "status": {
     "loading": "Cargando...",
@@ -30,10 +31,11 @@
     "online": "En línea",
     "offline": "Desconectado",
     "connecting": "Conectando..."
-  },  "language": {
+  },
+  "language": {
     "selectLanguage": "Seleccionar idioma",
     "spanish": "Español",
-    "english": "Inglés"
+    "english": "English"
   },
   "errors": {
     "loginRequired": "Por favor inicia sesión para continuar",
@@ -44,46 +46,17 @@
   },
   "misc": {
     "all": "Todos",
-    "selectCountry": "Selecciona un país",
+    "selectCountry": "Seleccionar país",
     "exploreRooms": "Explorar Salas",
     "filters": "Filtros",
-    "refresh": "Refrescar",
+    "refresh": "Actualizar",
     "searchPlaceholder": "Buscar por nombre de sala o juego...",
-    "game": "Juego",
-    "noRoomsCreated": "No hay salas creadas aún",
-    "beFirst": "¡Sé el primero en crear una sala!",
-    "noRoomsFound": "No se encontraron salas",
-    "adjustFilters": "Prueba ajustando los filtros de búsqueda",
-    "loadingRooms": "Cargando salas...",
-    "users": "usuarios",
-    "enter": "Entrar",    "createNewRoom": "Crear Nueva Sala",
-    "created": "Creado",
-    "allGames": "Todos los juegos",
-    "sortBy": "Ordenar por",
-    "activeUsers": "Usuarios activos",
-    "mostRecent": "Más recientes",
-    "nameAZ": "Nombre A-Z",
-    "status": "Estado",
-    "onlyActiveRooms": "Solo salas con usuarios activos",
-    "regions": "Regiones",
-    "languages": "Idiomas",
-    "countries": "Países",
-    "systems": "Sistemas",
-    "showing": "Mostrando",
-    "of": "de",
-    "rooms": "salas",
-    "activeRooms": "salas activas",
-    "allRegions": "Todas",
-    "allSystems": "Todos",    "players": "jugadores",
-    "roomNotFound": "Sala no encontrada",
-    "leaveRoom": "Salir de la sala",
-    "leaveRoomShort": "Salir",
-    "chatDevelopment": "Chat en desarrollo",
-    "chatDescription": "El chat en tiempo real se activará una vez que se configuren las tablas de la base de datos. Por favor, ejecuta el script SQL en Supabase.",
-    "chatPlaceholder": "Chat próximamente disponible...",
-    "send": "Enviar",
-    "usersInRoom": "Usuarios en Sala"
-  },  "sidebar": {
+    "comingSoon": "(Próximamente)",
+    "goBack": "Volver",
+    "optional": "opcional",
+    "players": "jugadores"
+  },
+  "sidebar": {
     "yourRooms": "Tus salas",
     "createNewRoom": "Crear nueva sala",
     "loading": "Cargando tus salas...",
@@ -93,72 +66,11 @@
   },
   "greeting": {
     "hello": "Hola, {{name}}"
-  },  "loading": {
+  },
+  "loading": {
     "dashboard": "Cargando dashboard...",
     "profile": "Cargando perfil...",
     "room": "Cargando sala...",
     "general": "Cargando..."
-  },  "dashboard": {
-    "welcomeBack": "¡Bienvenido de vuelta, {{name}}!",
-    "welcomeDescription": "Bienvenido de vuelta a GameGoUp",
-    "statsCards": {
-      "roomsCreated": "Salas Creadas",
-      "activeRooms": "Salas Activas", 
-      "messagesSent": "Mensajes Enviados"
-    },    "quickActions": {
-      "createRoom": "Crear Sala",
-      "searchRooms": "Buscar Salas",
-      "myProfile": "Mi Perfil",
-      "achievements": "Logros",
-      "supportUs": "Apóyanos"
-    },    "recentRooms": {
-      "title": "Tus Salas Recientes",
-      "viewAll": "Ver todas →",
-      "noRoomsYet": "Aún no has creado ninguna sala",
-      "createFirstRoom": "Crear tu primera sala"
-    },
-    "support": {
-      "donation": {
-        "title": "¡Apoya GameGoUp!",
-        "description": "Ayúdanos a mantener la plataforma funcionando",
-        "button": "Donar ❤️",
-        "thankyou": "¡Gracias por tu apoyo!"
-      },      "ads": {
-        "sponsored": "Patrocinado",
-        "learnMore": "Más información"
-      }
-    },    "community": {
-      "title": "Comunidad GameGoUp",
-      "description": "Únete a nuestra comunidad y ayuda a hacer GameGoUp aún mejor",
-      "social": {
-        "title": "Redes Sociales",
-        "description": "Síguenos en nuestras redes"
-      },
-      "discord": {
-        "title": "Discord Oficial",
-        "description": "Únete a nuestra comunidad",
-        "join": "Unirse a Discord"
-      },
-      "twitter": {
-        "follow": "Seguir en X"
-      },
-      "newsletter": {
-        "title": "Mantente actualizado",
-        "description": "Recibe las últimas noticias y actualizaciones de GameGoUp",
-        "emailPlaceholder": "tu@email.com",        "subscribe": "Suscribirse"
-      }
-    },
-    "platform": {
-      "stats": {
-        "title": "Estadísticas de la Plataforma",
-        "live": "En vivo",
-        "totalUsers": "Usuarios Totales",
-        "activeRooms": "Salas Activas",
-        "totalRooms": "Salas Creadas",
-        "totalMessages": "Mensajes",
-        "poweredBy": "Desarrollado con",
-        "forGamers": "para gamers"
-      }
-    }
   }
 }

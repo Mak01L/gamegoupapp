@@ -14,7 +14,8 @@
       "connected": "Conectado",
       "disconnected": "Desconectado",
       "reconnecting": "Reconectando..."
-    },    "actions": {
+    },
+    "actions": {
       "exitRoom": "Salir de la sala",
       "deleteMessage": "Eliminar mensaje",
       "reportUser": "Reportar usuario",
@@ -32,13 +33,15 @@
       "messageReceived": "Nuevo mensaje recibido",
       "roomEmpty": "La sala está vacía",
       "roomDeleted": "La sala fue eliminada automáticamente"
-    },    "room": {
+    },
+    "room": {
       "title": "Chat de la Sala",
       "loading": "Cargando sala...",
-      "error": "Error al cargar la sala",
-      "usersInRoom": "Usuarios en Sala ({{count}})",
-      "leaveRoom": "Salir de la sala",
-      "leaveRoomShort": "Salir",
+      "error": "Error al cargar la sala. Por favor verifica que la sala existe.",
+      "notFound": "Sala no encontrada",
+      "usersInRoom": "Usuarios en Sala",
+      "leaveRoom": "← Volver",
+      "leaveRoomShort": "← Volver",
       "regions": "Regiones",
       "languages": "Idiomas",
       "countries": "Países",
@@ -47,13 +50,21 @@
       "all": "Todos",
       "creator": "Creador",
       "you": "(Tú)",
-      "user": "Usuario"
+      "user": "Usuario",
+      "messagePlaceholder": "Escribe un mensaje..."
+    },
+    "menu": {
+      "viewProfile": "Ver Perfil",
+      "sendMessage": "Enviar Mensaje",
+      "you": "(Tú)",
+      "kickUser": "Expulsar Usuario"
     }
-  },  "roomChat": {
+  },
+  "roomChat": {
     "loadingRoom": "Cargando sala...",
     "roomNotFound": "Sala no encontrada",
-    "leaveRoom": "Salir de la sala",
-    "leaveRoomShort": "Salir",
+    "leaveRoom": "← Volver a salas",
+    "leaveRoomShort": "← Volver",
     "regions": "Regiones",
     "languages": "Idiomas",
     "countries": "Países",

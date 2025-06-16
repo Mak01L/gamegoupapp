@@ -9,10 +9,12 @@ La aplicación está experimentando errores HTTP 403 con el mensaje "new row vio
 ### Opción 1: Configuración Completa (Recomendada)
 
 1. **Ir al Dashboard de Supabase**
+
    - Abre tu proyecto en https://supabase.com/dashboard
    - Ve a "SQL Editor"
 
 2. **Ejecutar Script de Diagnóstico**
+
    - Copia y pega el contenido del archivo `supabase-storage-diagnostics.sql`
    - Ejecuta el script para ver el estado actual
    - Revisa los resultados para entender qué está configurado
@@ -32,6 +34,7 @@ La aplicación está experimentando errores HTTP 403 con el mensaje "new row vio
 ### Opción 3: Configuración Manual desde el Dashboard
 
 1. **Crear Bucket Manualmente**
+
    - Ve a "Storage" en el dashboard de Supabase
    - Clic en "Create bucket"
    - Nombre: `avatars`
@@ -40,41 +43,46 @@ La aplicación está experimentando errores HTTP 403 con el mensaje "new row vio
    - Tipos MIME permitidos: `image/jpeg, image/png, image/webp, image/gif`
 
 2. **Configurar Políticas RLS**
+
    - Ve a "Authentication" > "Policies"
    - Busca la tabla `storage.objects`
    - Crear las siguientes políticas:
 
    **Política de Lectura:**
+
    ```sql
    CREATE POLICY "Avatar images are publicly accessible" ON storage.objects
    FOR SELECT USING (bucket_id = 'avatars');
    ```
 
    **Política de Escritura:**
+
    ```sql
    CREATE POLICY "Users can upload their own avatar" ON storage.objects
    FOR INSERT WITH CHECK (
-     bucket_id = 'avatars' 
+     bucket_id = 'avatars'
      AND auth.role() = 'authenticated'
      AND (storage.foldername(name))[1] = auth.uid()::text
    );
    ```
 
    **Política de Actualización:**
+
    ```sql
    CREATE POLICY "Users can update their own avatar" ON storage.objects
    FOR UPDATE USING (
-     bucket_id = 'avatars' 
+     bucket_id = 'avatars'
      AND auth.role() = 'authenticated'
      AND (storage.foldername(name))[1] = auth.uid()::text
    );
    ```
 
    **Política de Eliminación:**
+
    ```sql
    CREATE POLICY "Users can delete their own avatar" ON storage.objects
    FOR DELETE USING (
-     bucket_id = 'avatars' 
+     bucket_id = 'avatars'
      AND auth.role() = 'authenticated'
      AND (storage.foldername(name))[1] = auth.uid()::text
    );
@@ -110,15 +118,19 @@ La aplicación ahora incluye logs detallados que te ayudarán a identificar exac
 ### Problemas Comunes y Soluciones
 
 #### Error: "Bucket doesn't exist"
+
 - **Solución:** Ejecutar el script de setup para crear el bucket
 
 #### Error: "Insufficient permissions"
+
 - **Solución:** Verificar que las políticas RLS estén correctamente configuradas
 
 #### Error: "File too large"
+
 - **Solución:** Verificar que el archivo sea menor a 2MB (límite de la app) y 5MB (límite del bucket)
 
 #### Error: "Invalid file type"
+
 - **Solución:** Solo se permiten imágenes (jpeg, png, webp, gif)
 
 ### Comandos SQL Útiles para Debug

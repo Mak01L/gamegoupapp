@@ -3,6 +3,7 @@
 ## ✅ **SCRIPT DE VERIFICACIÓN POST-DEPLOYMENT**
 
 ### 📋 **Información del Dominio:**
+
 - **Dominio:** `gamgoup.space`
 - **URL ads.txt:** `https://gamgoup.space/ads.txt`
 - **Publisher ID:** `ca-pub-7274762890410296`
@@ -10,18 +11,23 @@
 ### 🔧 **COMANDOS DE VERIFICACIÓN:**
 
 #### 1. **Verificar acceso directo:**
+
 ```bash
 curl -I https://gamgoup.space/ads.txt
 ```
-*Debería retornar: HTTP/2 200*
+
+_Debería retornar: HTTP/2 200_
 
 #### 2. **Descargar y verificar contenido:**
+
 ```bash
 curl https://gamgoup.space/ads.txt
 ```
-*Debería mostrar el contenido del archivo ads.txt*
+
+_Debería mostrar el contenido del archivo ads.txt_
 
 #### 3. **Verificar con PowerShell (Windows):**
+
 ```powershell
 Invoke-WebRequest -Uri "https://gamgoup.space/ads.txt" -Method Head
 Invoke-WebRequest -Uri "https://gamgoup.space/ads.txt" | Select-Object Content
@@ -30,15 +36,18 @@ Invoke-WebRequest -Uri "https://gamgoup.space/ads.txt" | Select-Object Content
 ### 🌐 **HERRAMIENTAS ONLINE DE VERIFICACIÓN:**
 
 #### 1. **Google Ads.txt Validator:**
+
 - URL: https://adstxt.guru/
 - Ingresa: `gamgoup.space`
 - Verifica formato y sintaxis
 
 #### 2. **IAB Ads.txt Validator:**
+
 - URL: https://iabtechlab.com/ads-txt/
 - Útil para verificación completa
 
 #### 3. **Google Search Console:**
+
 - Agrega `gamgoup.space` a Search Console
 - Verifica indexación del archivo ads.txt
 
@@ -54,6 +63,7 @@ Invoke-WebRequest -Uri "https://gamgoup.space/ads.txt" | Select-Object Content
 ### 🚨 **PROBLEMAS COMUNES Y SOLUCIONES:**
 
 #### **Error 404 - Archivo no encontrado:**
+
 ```bash
 # Verificar que el archivo está en public/
 ls -la public/ads.txt
@@ -63,6 +73,7 @@ dir public\ads.txt
 ```
 
 #### **Contenido incorrecto:**
+
 ```bash
 # Verificar contenido local:
 cat public/ads.txt
@@ -72,18 +83,21 @@ type public\ads.txt
 ```
 
 #### **MIME type incorrecto:**
+
 - Next.js debería servir automáticamente como text/plain
 - Si hay problemas, verificar next.config.js
 
 ### 📞 **SOPORTE TÉCNICO:**
 
 #### **Si el archivo no es accesible:**
+
 1. Verificar que está en `/public/ads.txt`
 2. Hacer rebuild y redeploy
 3. Limpiar caché del CDN si usas uno
 4. Verificar configuración de Vercel/hosting
 
 #### **Si AdSense muestra errores:**
+
 1. Esperar 24-48 horas después del deployment
 2. Verificar que el Publisher ID es exacto
 3. Usar Google Search Console para forzar re-crawl
@@ -92,10 +106,12 @@ type public\ads.txt
 ### 🎯 **PRÓXIMAS ACCIONES:**
 
 1. **Inmediato (después del deploy):**
+
    - [ ] Verificar `https://gamgoup.space/ads.txt`
    - [ ] Usar validator online para confirmar formato
 
 2. **Dentro de 24 horas:**
+
    - [ ] Verificar en Google Search Console
    - [ ] Revisar AdSense Console para alertas
 
@@ -104,9 +120,11 @@ type public\ads.txt
    - [ ] Verificar que no hay warnings en AdSense
 
 ### 📊 **MONITOREO CONTINUO:**
+
 - Verificar mensualmente que el archivo sigue accesible
 - Revisar AdSense Console para nuevas alertas
 - Mantener actualizado si cambias de redes publicitarias
 
 ---
+
 **✅ Archivo ads.txt configurado para gamgoup.space - Listo para deployment**

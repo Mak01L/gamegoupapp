@@ -1,110 +1,91 @@
-{  "profile": {
-    "title": "Mi perfil",
-    "edit": "Editar",
-    "save": "Guardar",
-    "editProfile": "Editar perfil",
-    "saveProfile": "Guardar perfil",
-    "cancel": "Cancelar",
-    "profileUpdated": "Perfil actualizado correctamente",
-    "loadingProfile": "Cargando perfil...",
-    "saving": "Guardando...",
-    "pleaseLogin": "Por favor, inicia sesión para ver tu perfil.",
-    "avatar": {
-      "changeAvatar": "Cambiar avatar",
-      "uploadNew": "Subir nuevo avatar",
-      "altText": "Avatar de {{username}}"
-    },
-    "status": {
-      "online": "Online",
-      "offline": "Offline"
-    },    "form": {
-      "biography": "Biografía",
-      "realName": "Nombre real",
-      "location": "Ubicación",
-      "birthdate": "Fecha de nacimiento",
-      "username": "Nombre de usuario",
-      "email": "Correo electrónico",
-      "favoriteGames": "Juegos favoritos",
-      "gamingExperience": "Experiencia gaming",
-      "placeholders": {
-        "username": "Tu nombre de gamer",
-        "bio": "Cuéntanos sobre ti...",
-        "favoriteGames": "League of Legends, Valorant, etc.",
-        "selectCountry": "Selecciona tu país",
-        "realName": "Nombre real",
-        "biography": "Cuéntanos sobre ti..."
-      },
-      "validation": {
-        "usernameRequired": "El nombre de usuario es obligatorio",
-        "usernameMinLength": "Mínimo 3 caracteres",
-        "emailRequired": "El correo es obligatorio",
-        "emailInvalid": "Correo electrónico inválido",
-        "bioTooLong": "La biografía es muy larga (máx 250 caracteres)",
-        "realNameTooLong": "El nombre real es muy largo (máx 50 caracteres)"
-      }
-    },
-    "privacy": {
-      "show": "Mostrar",
-      "private": "Privado",
-      "notSpecified": "No especificado"
-    },
-    "preferences": {
-      "theme": "Tema",
-      "language": "Idioma",
-      "visibility": "Visibilidad",
-      "options": {
-        "themeAuto": "Auto",
-        "themeLight": "Claro",
-        "themeDark": "Oscuro",
-        "spanish": "Español",
-        "english": "Inglés",
-        "public": "Público",
-        "private": "Privado"
-      }
-    },
-    "activity": {
-      "memberSince": "Miembro desde",
-      "lastConnection": "Última conexión",
-      "roomsCreated": "Salas creadas",
-      "gamesPlayed": "Partidas jugadas"
-    },
-    "noData": {
-      "noBiography": "Sin biografía aún."
-    },    "characterCount": "{{count}}/250 caracteres",
+{
+  "title": "Mi perfil",
+  "edit": "Editar",
+  "save": "Guardar",
+  "editProfile": "Editar perfil",
+  "saveProfile": "Guardar perfil",
+  "cancel": "Cancelar",
+  "profileUpdated": "Perfil actualizado correctamente",
+  "loadingProfile": "Cargando perfil...",
+  "saving": "Guardando...",
+  "pleaseLogin": "Por favor, inicia sesión para ver tu perfil.",
+  "avatar": {
+    "changeAvatar": "Cambiar avatar",
+    "uploadNew": "Subir nuevo avatar",
+    "altText": "Avatar de {{username}}"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "form": {
     "biography": "Biografía",
-    "biography_placeholder": "Cuéntanos sobre ti...",
-    "no_biography": "Sin biografía aún.",
-    "real_name": "Nombre real",
-    "real_name_placeholder": "Nombre real",
+    "realName": "Nombre real",
     "location": "Ubicación",
-    "select_country": "Selecciona tu país",
     "birthdate": "Fecha de nacimiento",
-    "birthdate_placeholder": "Fecha de nacimiento",
-    "theme": "Tema",
-    "select_theme": "Seleccionar tema",
-    "auto": "Auto",
-    "light": "Claro",
-    "dark": "Oscuro",
-    "language": "Idioma",
-    "select_language": "Seleccionar idioma",
-    "spanish": "Español",
-    "english": "Inglés",
-    "visibility": "Visibilidad",
-    "select_visibility": "Seleccionar visibilidad",
-    "public": "Público",
-    "private": "Privado",
-    "show": "Mostrar",
-    "not_specified": "No especificado",
-    "member_since": "Miembro desde",
-    "last_connection": "Última conexión",
-    "rooms_created": "Salas creadas",
-    "games_played": "Partidas jugadas",
-    "characters": "caracteres",
-    "experience": {
-      "beginner": "Principiante",
-      "intermediate": "Intermedio",
-      "advanced": "Avanzado",
-      "professional": "Profesional"
+    "username": "Nombre de usuario",
+    "email": "Correo electrónico",
+    "favoriteGames": "Juegos favoritos",
+    "gamingExperience": "Experiencia gaming",
+    "placeholders": {
+      "username": "Tu nombre de gamer",
+      "bio": "Cuéntanos sobre ti...",
+      "favoriteGames": "League of Legends, Valorant, etc.",
+      "selectCountry": "Selecciona tu país",
+      "realName": "Nombre real",
+      "biography": "Cuéntanos sobre ti...",
+      "birthdate": "Selecciona tu fecha de nacimiento"
+    },
+    "validation": {
+      "usernameRequired": "El nombre de usuario es obligatorio",
+      "usernameMinLength": "Mínimo 3 caracteres",
+      "emailRequired": "El correo es obligatorio",
+      "emailInvalid": "Correo electrónico inválido",
+      "bioTooLong": "La biografía es muy larga (máx 250 caracteres)",
+      "realNameTooLong": "El nombre real es muy largo (máx 50 caracteres)"
     }
+  },
+  "privacy": {
+    "show": "Mostrar",
+    "private": "Privado",
+    "notSpecified": "No especificado"
+  },
+  "preferences": {
+    "theme": "Tema",
+    "language": "Idioma",
+    "visibility": "Visibilidad",
+    "options": {
+      "themeAuto": "Auto",
+      "themeLight": "Claro",
+      "themeDark": "Oscuro",
+      "spanish": "Español",
+      "english": "Inglés",
+      "public": "Público",
+      "private": "Privado"
+    }
+  },
+  "activity": {
+    "memberSince": "Miembro desde",
+    "lastConnection": "Última conexión",
+    "roomsCreated": "Salas creadas",
+    "gamesPlayed": "Partidas jugadas"
+  },
+  "noData": {
+    "noBiography": "Sin biografía aún."
+  },
+  "characterCount": "{{count}}/250 caracteres",
+  "experience": {
+    "beginner": "Principiante",
+    "intermediate": "Intermedio",
+    "advanced": "Avanzado",
+    "professional": "Profesional"
+  },
+  "publicProfile": "Perfil público",
+  "viewingPublicProfile": "Estás viendo el perfil público de este usuario",
+  "errors": {
+    "errorLoading": "Error al cargar el perfil",
+    "profilePrivate": "Este perfil es privado",
+    "userNotFound": "Usuario no encontrado",
+    "profileNotFound": "Perfil no encontrado"
   }
 }

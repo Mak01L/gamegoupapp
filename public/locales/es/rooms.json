@@ -1,6 +1,6 @@
 ﻿{
   "title": "Salas de juego",
-  "createRoom": "Crear nueva sala", 
+  "createRoom": "Crear nueva sala",
   "createNewRoom": "Crear Nueva Sala",
   "joinRoom": "Unirse a sala",
   "roomCreated": "¡Sala creada correctamente!",
@@ -14,7 +14,7 @@
   "searchPlaceholder": "Buscar salas...",
   "filters": {
     "allGames": "Todos los juegos",
-    "allRegions": "Todas las regiones", 
+    "allRegions": "Todas las regiones",
     "allLanguages": "Todos los idiomas",
     "allSystems": "Todos los sistemas"
   },

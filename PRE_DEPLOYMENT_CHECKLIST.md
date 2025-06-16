@@ -3,6 +3,7 @@
 ## 1. ✅ Testing Local Completado
 
 ### Componentes Principales
+
 - [x] **Layout**: Script AdSense añadido correctamente
 - [x] **Dashboard**: Banner publicitario y botón donación integrados
 - [x] **DonationWidget**: URL PayPal real configurada
@@ -11,6 +12,7 @@
 - [x] **Configuración**: Publisher ID y fallbacks listos
 
 ### Funcionalidades Verificadas
+
 - [x] **Donaciones PayPal**: Abre en nueva ventana automáticamente
 - [x] **Anuncios Fallback**: Se muestran cuando AdSense no disponible
 - [x] **Sistema Responsivo**: Adapta a diferentes tamaños de pantalla
@@ -20,11 +22,13 @@
 ## 2. 🚀 Preparación para Despliegue
 
 ### Opciones de Hosting Recomendadas
+
 1. **Vercel** (Recomendado - gratuito y optimizado para Next.js)
 2. **Netlify** (Alternativa gratuita)
 3. **AWS Amplify** (Para mayor escalabilidad)
 
 ### Variables de Entorno Necesarias
+
 ```env
 # .env.local
 NEXT_PUBLIC_SUPABASE_URL=tu_supabase_url
@@ -34,6 +38,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_supabase_key
 ## 3. 📋 Pasos para Despliegue en Vercel
 
 ### Paso 1: Preparar Repositorio
+
 ```bash
 # Si no tienes git inicializado
 git init
@@ -46,6 +51,7 @@ git push -u origin main
 ```
 
 ### Paso 2: Conectar con Vercel
+
 1. Ve a [vercel.com](https://vercel.com)
 2. Conecta tu cuenta de GitHub
 3. Importa el repositorio de GameGoUp
@@ -53,6 +59,7 @@ git push -u origin main
 5. Despliega
 
 ### Paso 3: Configurar Dominio Personalizado (Opcional)
+
 1. Compra un dominio (ej: gamegorup.com)
 2. Configura DNS en Vercel
 3. Activa HTTPS automático
@@ -62,11 +69,13 @@ git push -u origin main
 ### Una vez que el sitio esté online:
 
 1. **Verificar URL del sitio**
+
    - Debe ser accesible públicamente
    - HTTPS debe estar activo
    - Todas las páginas deben cargar correctamente
 
 2. **Solicitar revisión en AdSense**
+
    - Ir a cuenta de AdSense
    - Añadir sitio web: TU_DOMINIO.com
    - Esperar aprobación (1-14 días típicamente)
@@ -82,12 +91,14 @@ git push -u origin main
 ## 5. 📊 Métricas a Monitorear
 
 ### Antes de AdSense (Anuncios Fallback)
+
 - Tiempo de carga de páginas
 - Experiencia de usuario
 - Funcionalidad de donaciones
 - Navegación fluida
 
 ### Después de AdSense
+
 - Impresiones de anuncios
 - CTR (Click-Through Rate)
 - RPM (Revenue Per Mille)
@@ -115,17 +126,20 @@ node test-integration.js
 ## 7. 📁 Archivos Críticos para Despliegue
 
 ### Configuración
+
 - ✅ `next.config.js` - Configuración Next.js
 - ✅ `lib/adConfig.ts` - Configuración AdSense
 - ✅ `package.json` - Dependencias
 
 ### Componentes Principales
+
 - ✅ `app/layout.tsx` - Script AdSense
 - ✅ `components/AdManager.tsx` - Sistema híbrido
 - ✅ `components/DonationWidget.tsx` - PayPal
 - ✅ `components/GoogleAdSense.tsx` - AdSense nativo
 
 ### Assets
+
 - ✅ `public/locales/` - Traducciones
 - ✅ `app/globals.css` - Estilos AdSense
 
@@ -140,11 +154,13 @@ node test-integration.js
 ## 9. 🎯 Próximos Pasos Post-Despliegue
 
 1. **Inmediato** (0-24 horas):
+
    - Verificar que el sitio carga correctamente
    - Probar todas las funcionalidades
    - Confirmar anuncios fallback funcionan
 
 2. **Corto plazo** (1-7 días):
+
    - Solicitar revisión de AdSense
    - Monitorear métricas de rendimiento
    - Optimizar SEO básico
@@ -158,11 +174,13 @@ node test-integration.js
 ## 10. 📞 Soporte y Recursos
 
 ### Documentación Creada
+
 - `ADSENSE_DONATION_INTEGRATION.md` - Integración completa
 - `INTEGRATION_COMPLETE.md` - Estado actual
 - `NEXT_STEPS_ADSENSE.md` - Pasos post-aprobación
 
 ### Enlaces Útiles
+
 - [Vercel Deployment](https://vercel.com/docs)
 - [Google AdSense Help](https://support.google.com/adsense)
 - [Next.js Deployment](https://nextjs.org/docs/deployment)

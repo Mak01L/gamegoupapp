@@ -80,6 +80,7 @@ NEXT_PUBLIC_ADSENSE_PUBLISHER_ID=ca-pub-7274762890410296
 ## Checklist Final
 
 ### ✅ Antes del Despliegue:
+
 - [ ] `npm run build` funciona sin errores
 - [ ] Todos los componentes de donación funcionan
 - [ ] Enlaces de Discord y Twitter funcionan
@@ -87,6 +88,7 @@ NEXT_PUBLIC_ADSENSE_PUBLISHER_ID=ca-pub-7274762890410296
 - [ ] Archivos de traducción completos
 
 ### ✅ Durante el Despliegue:
+
 - [ ] Repositorio Git creado
 - [ ] Código subido a GitHub
 - [ ] Proyecto conectado a Vercel
@@ -94,6 +96,7 @@ NEXT_PUBLIC_ADSENSE_PUBLISHER_ID=ca-pub-7274762890410296
 - [ ] Build automático exitoso
 
 ### ✅ Después del Despliegue:
+
 - [ ] Dominio conectado y funcionando
 - [ ] SSL activo (HTTPS)
 - [ ] Supabase URLs actualizadas

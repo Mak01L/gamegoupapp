@@ -1,0 +1,2 @@
+// Importar la versión simple que funciona
+export { default } from './page.simple'

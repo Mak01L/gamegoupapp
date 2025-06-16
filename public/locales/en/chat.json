@@ -14,7 +14,8 @@
       "connected": "Connected",
       "disconnected": "Disconnected",
       "reconnecting": "Reconnecting..."
-    },    "actions": {
+    },
+    "actions": {
       "exitRoom": "Exit room",
       "deleteMessage": "Delete message",
       "reportUser": "Report user",
@@ -32,11 +33,13 @@
       "messageReceived": "New message received",
       "roomEmpty": "Room is empty",
       "roomDeleted": "Room was automatically deleted"
-    },    "room": {
+    },
+    "room": {
       "title": "Room Chat",
       "loading": "Loading room...",
       "error": "Error loading room",
-      "usersInRoom": "Users in Room ({{count}})",
+      "notFound": "Room not found",
+      "usersInRoom": "Users in Room",
       "leaveRoom": "Leave room",
       "leaveRoomShort": "Leave",
       "regions": "Regions",
@@ -47,9 +50,17 @@
       "all": "All",
       "creator": "Creator",
       "you": "(You)",
-      "user": "User"
+      "user": "User",
+      "messagePlaceholder": "Type a message..."
+    },
+    "menu": {
+      "viewProfile": "View Profile",
+      "sendMessage": "Send Message",
+      "you": "(You)",
+      "kickUser": "Kick User"
     }
-  },  "roomChat": {
+  },
+  "roomChat": {
     "loadingRoom": "Loading room...",
     "roomNotFound": "Room not found",
     "leaveRoom": "Leave room",

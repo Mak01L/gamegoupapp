@@ -1,133 +1,142 @@
-"use client";
+'use client'
 
-import { useState, useRef, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import countries from '../data/countries';
+import { useState, useRef, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import countries from '../data/countries'
 
 interface CountrySelectorProps {
-  value: string;
-  onChange: (country: string) => void;
-  placeholder?: string;
-  className?: string;
-  disabled?: boolean;
+  value: string
+  onChange: (country: string) => void
+  placeholder?: string
+  className?: string
+  disabled?: boolean
 }
 
-export default function CountrySelector({ 
-  value, 
-  onChange, 
+export default function CountrySelector({
+  value,
+  onChange,
   placeholder,
-  className = "",
-  disabled = false 
+  className = '',
+  disabled = false,
 }: CountrySelectorProps) {
-  const { t } = useTranslation('common');
-  
-  const [isOpen, setIsOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const { t } = useTranslation('common')
+
+  const [isOpen, setIsOpen] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [highlightedIndex, setHighlightedIndex] = useState(-1)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   // Filtrar países basado en el término de búsqueda
-  const filteredCountries = countries.filter(country =>
+  const filteredCountries = countries.filter((country) =>
     country.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  )
 
   // Cerrar dropdown cuando se hace clic fuera
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-        setSearchTerm('');
-        setHighlightedIndex(-1);
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false)
+        setSearchTerm('')
+        setHighlightedIndex(-1)
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   // Manejar navegación con teclado
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!isOpen) {
       if (e.key === 'Enter' || e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        setIsOpen(true);
-        setHighlightedIndex(0);
+        e.preventDefault()
+        setIsOpen(true)
+        setHighlightedIndex(0)
       }
-      return;
+      return
     }
 
     switch (e.key) {
       case 'ArrowDown':
-        e.preventDefault();
-        setHighlightedIndex(prev => 
+        e.preventDefault()
+        setHighlightedIndex((prev) =>
           prev < filteredCountries.length - 1 ? prev + 1 : 0
-        );
-        break;
+        )
+        break
       case 'ArrowUp':
-        e.preventDefault();
-        setHighlightedIndex(prev => 
+        e.preventDefault()
+        setHighlightedIndex((prev) =>
           prev > 0 ? prev - 1 : filteredCountries.length - 1
-        );
-        break;
+        )
+        break
       case 'Enter':
-        e.preventDefault();
-        if (highlightedIndex >= 0 && highlightedIndex < filteredCountries.length) {
-          handleSelect(filteredCountries[highlightedIndex]);
+        e.preventDefault()
+        if (
+          highlightedIndex >= 0 &&
+          highlightedIndex < filteredCountries.length
+        ) {
+          handleSelect(filteredCountries[highlightedIndex])
         }
-        break;
+        break
       case 'Escape':
-        setIsOpen(false);
-        setSearchTerm('');
-        setHighlightedIndex(-1);
-        inputRef.current?.blur();
-        break;
+        setIsOpen(false)
+        setSearchTerm('')
+        setHighlightedIndex(-1)
+        inputRef.current?.blur()
+        break
     }
-  };
+  }
 
   const handleSelect = (country: string) => {
-    onChange(country);
-    setIsOpen(false);
-    setSearchTerm('');
-    setHighlightedIndex(-1);
-  };
+    onChange(country)
+    setIsOpen(false)
+    setSearchTerm('')
+    setHighlightedIndex(-1)
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-    setHighlightedIndex(-1);
+    setSearchTerm(e.target.value)
+    setHighlightedIndex(-1)
     if (!isOpen) {
-      setIsOpen(true);
+      setIsOpen(true)
     }
-  };
+  }
 
   const handleInputClick = () => {
     if (!disabled) {
-      setIsOpen(!isOpen);
+      setIsOpen(!isOpen)
       if (!isOpen) {
-        setHighlightedIndex(-1);
+        setHighlightedIndex(-1)
       }
     }
-  };
+  }
 
   const clearSelection = () => {
-    onChange('');
-    setSearchTerm('');
-    setIsOpen(false);
-    setHighlightedIndex(-1);
-  };
+    onChange('')
+    setSearchTerm('')
+    setIsOpen(false)
+    setHighlightedIndex(-1)
+  }
 
   // Scroll al elemento destacado
   useEffect(() => {
     if (highlightedIndex >= 0 && isOpen) {
-      const element = document.getElementById(`country-option-${highlightedIndex}`);
+      const element = document.getElementById(
+        `country-option-${highlightedIndex}`
+      )
       if (element) {
-        element.scrollIntoView({ block: 'nearest' });
+        element.scrollIntoView({ block: 'nearest' })
       }
     }
-  }, [highlightedIndex, isOpen]);
+  }, [highlightedIndex, isOpen])
 
   // Use translated placeholder if none provided
-  const defaultPlaceholder = placeholder || t('misc.selectCountry', 'Selecciona un país');
+  const defaultPlaceholder =
+    placeholder || t('misc.selectCountry', 'Selecciona un país')
 
   return (
     <div className={`relative ${className}`} ref={dropdownRef}>
@@ -151,11 +160,15 @@ export default function CountrySelector({
           aria-expanded={isOpen}
           aria-haspopup="listbox"
           aria-controls="country-listbox"
-          aria-activedescendant={highlightedIndex >= 0 ? `country-option-${highlightedIndex}` : undefined}
+          aria-activedescendant={
+            highlightedIndex >= 0
+              ? `country-option-${highlightedIndex}`
+              : undefined
+          }
           role="combobox"
           title="Selector de país"
         />
-        
+
         {/* Iconos de acción */}
         <div className="absolute inset-y-0 right-0 flex items-center pr-2">
           {value && !disabled && (
@@ -165,8 +178,18 @@ export default function CountrySelector({
               onClick={clearSelection}
               aria-label="Limpiar selección"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           )}
@@ -175,20 +198,37 @@ export default function CountrySelector({
             className={`text-gray-400 p-1 rounded ${disabled ? 'cursor-not-allowed' : 'hover:text-white'}`}
             onClick={handleInputClick}
             disabled={disabled}
-            aria-label={isOpen ? "Cerrar lista" : "Abrir lista"}
+            aria-label={isOpen ? 'Cerrar lista' : 'Abrir lista'}
           >
-            <svg className={`w-4 h-4 transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            <svg
+              className={`w-4 h-4 transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
-          </button>        </div>
+          </button>{' '}
+        </div>
       </div>
 
       {/* Dropdown */}
       {isOpen && (
         <div className="absolute z-50 w-full mt-1 bg-neutral-800 border border-violet-700 rounded-md shadow-lg max-h-60 overflow-auto">
-          {filteredCountries.length > 0 ? (            <ul id="country-listbox" role="listbox" className="py-1" title="Lista de países">
+          {filteredCountries.length > 0 ? (
+            <ul
+              id="country-listbox"
+              role="listbox"
+              className="py-1"
+              title="Lista de países"
+            >
               {filteredCountries.map((country, index) => {
-                const isSelected = country === value;
+                const isSelected = country === value
                 return (
                   <li
                     key={country}
@@ -197,14 +237,15 @@ export default function CountrySelector({
                       px-3 py-2 cursor-pointer text-white transition-colors duration-150
                       ${index === highlightedIndex ? 'bg-violet-600' : 'hover:bg-violet-700'}
                       ${isSelected ? 'bg-violet-800 font-semibold' : ''}
-                    `}                    onClick={() => handleSelect(country)}
+                    `}
+                    onClick={() => handleSelect(country)}
                     role="option"
                     aria-selected={isSelected}
                     title={country}
                   >
                     {country}
                   </li>
-                );
+                )
               })}
             </ul>
           ) : (
@@ -215,5 +256,5 @@ export default function CountrySelector({
         </div>
       )}
     </div>
-  );
+  )
 }

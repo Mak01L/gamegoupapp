@@ -1,286 +1,219 @@
-// app/auth/page.tsx
 'use client'
-import { useState, useEffect } from 'react'
+
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { supabase } from '../../lib/supabaseClient'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { useAuth } from '../../components/AuthProvider'
-import { useTranslation } from 'react-i18next'
-import AdManager from '../../components/AdManager'
-import { getAdConfig } from '../../lib/adConfig'
 
 export default function AuthPage() {
-  const { t } = useTranslation('auth')
+  const { t } = useTranslation('common')
+  const router = useRouter()
+  const [isLogin, setIsLogin] = useState(true)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [repeatPassword, setRepeatPassword] = useState('')
-  const [remember, setRemember] = useState(false)
-  const [isLogin, setIsLogin] = useState(true)
-  const [isReset, setIsReset] = useState(false)
-  const [error, setError] = useState('')
-  const [info, setInfo] = useState('')
-  const [username, setUsername] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
-  const { user } = useAuth()
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
 
-  // Si ya hay usuario autenticado, redirigir al dashboard
-  useEffect(() => {
-    if (user) {
-      router.push('/dashboard')
-    }
-  }, [user, router])
-
-  // Cargar datos recordados
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedEmail = localStorage.getItem('gamegoup_email')
-      const savedPassword = localStorage.getItem('gamegoup_password')
-      if (savedEmail && savedPassword) {
-        setEmail(savedEmail)
-        setPassword(savedPassword)
-        setRemember(true)
-      }
-    }
-  }, [])
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError('')
-    setInfo('')
-    setIsLoading(true)
+    setLoading(true)
+    setMessage('')
 
     try {
       if (isLogin) {
-        if (remember) {
-          localStorage.setItem('gamegoup_email', email)
-          localStorage.setItem('gamegoup_password', password)
-        } else {
-          localStorage.removeItem('gamegoup_email')
-          localStorage.removeItem('gamegoup_password')
-        }
-        
-        const { error } = await supabase.auth.signInWithPassword({ email, password })
-        if (error) {
-          setError(error.message)
-        }
-        // La redirección se maneja automáticamente en AuthProvider
-      } else {        if (!username.trim()) {
-          setError(t('errors.usernameRequired'))
-          return
-        }
-        if (password !== repeatPassword) {
-          setError(t('errors.passwordsDontMatch'))
-          return
-        }
-        if (password.length < 6) {
-          setError(t('errors.passwordTooShort'))
-          return
-        }
-        
-        // Registro con user_metadata
-        const { data, error } = await supabase.auth.signUp({
+        // Iniciar sesión
+        const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
-          options: { data: { username } }
         })
-        
+
         if (error) {
-          setError(error.message)
+          setMessage(`Error: ${error.message}`)
         } else {
-          // Actualizar el perfil de Supabase Auth para guardar el username en el campo 'username'
-          if (data?.user) {
-            await supabase.auth.updateUser({ data: { username } });
-          }          setInfo(t('signupSuccess'))
-          setIsLogin(true)
+          setMessage('¡Sesión iniciada correctamente!')
+          router.push('/dashboard')
         }
-      }    } catch (err) {
-      setError(t('errors.unexpectedError'))
-      console.error('Auth error:', err)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-  const handleReset = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError('')
-    setInfo('')
-    setIsLoading(true)
+      } else {
+        // Registrarse
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+        })
 
-    try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email)
-      if (error) {
-        setError(error.message)      } else {
-        setInfo(t('resetEmailSent'))
-      }    } catch (err) {
-      setError(t('errors.unexpectedError'))
-      console.error('Reset error:', err)
+        if (error) {
+          setMessage(`Error: ${error.message}`)
+        } else {
+          setMessage('¡Cuenta creada! Revisa tu email para confirmar.')
+        }
+      }
+    } catch (error) {
+      console.error('Auth error:', error)
+      setMessage('Error inesperado. Inténtalo de nuevo.')
     } finally {
-      setIsLoading(false)
+      setLoading(false)
     }
-  }
-
-  // Si ya hay usuario autenticado, no mostrar el formulario
-  if (user) {
-    return (
-      <main className="min-h-screen flex flex-col items-center justify-center">        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-violet-500 mx-auto mb-4"></div>
-          <p className="text-gray-300">{t('redirectingToDashboard')}</p>
-        </div>
-      </main>
-    )
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Contenedor principal con grid para posicionar anuncios */}
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-8 items-center px-4">
-        
-        {/* Anuncio lateral izquierdo - Solo visible en pantallas grandes */}
-        <div className="hidden lg:block lg:col-span-1">
-          <AdManager 
-            variant="card"
-            adSlot={getAdConfig('gaming').slot}
-            fallbackAd={{
-              title: 'Únete a GameGoUp',
-              description: 'La mejor comunidad de gamers está esperándote',
-              sponsor: 'GameGoUp Community',
-              link: '#'
-            }}
-            className="w-full"
-          />
-        </div>
-
-        {/* Contenido central - Formulario de autenticación */}
-        <div className="lg:col-span-3 flex flex-col items-center justify-center">
-          <div className="w-full flex flex-col items-center justify-center mt-8 mb-4">
-            <Image 
-              src="/logo.png" 
-              alt="GameGoUp Logo" 
-              width={320} 
-              height={320} 
-              priority 
-              className="w-80 h-80"
-              sizes="320px"
-            />
-          </div>
-
-          <h1 className="text-3xl font-bold mb-4 text-violet-400">
-            {isReset ? t('resetPassword') : isLogin ? t('loginTitle') : t('signupTitle')}
-          </h1>
-          <form onSubmit={isReset ? handleReset : handleAuth} className="flex flex-col gap-3 w-80 bg-neutral-900 p-6 rounded-xl border border-violet-700">        {!isLogin && !isReset && (
-            <input
-              type="text"
-              placeholder={t('username')}
-              className="p-2 rounded bg-black border border-violet-500 text-white"
-              value={username}
-              onChange={e => setUsername(e.target.value)}
-              required
-              maxLength={20}
-            />
-          )}        <input
-            type="email"
-            placeholder={t('email')}
-            className="p-2 rounded bg-black border border-violet-500 text-white"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-          {!isReset && (
-            <>            <input
-              type="password"
-              placeholder={t('password')}
-              className="p-2 rounded bg-black border border-violet-500 text-white"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              required
-            />
-            {!isLogin && (              <input
-                type="password"
-                placeholder={t('confirmPassword')}
-                className="p-2 rounded bg-black border border-violet-500 text-white"
-                value={repeatPassword}
-                onChange={e => setRepeatPassword(e.target.value)}
-                required
-              />
-            )}
-            {isLogin && (              <label className="flex items-center gap-2 text-sm text-violet-300">
-                <input
-                  type="checkbox"
-                  checked={remember}
-                  onChange={e => setRemember(e.target.checked)}
+    <div
+      className="relative flex size-full min-h-screen flex-col bg-black"
+      style={{ fontFamily: 'Inter, "Noto Sans", sans-serif' }}
+    >
+      <div className="layout-container flex h-full grow flex-col">
+        {/* Header */}
+        <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#292929] px-10 py-3">
+          <div className="flex items-center gap-4 text-[#FFFFFF]">
+            <div className="size-4">
+              <svg
+                viewBox="0 0 48 48"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M24 4L29.2 14.2L40 14.2L31.4 20.6L34.4 31.8L24 25.4L13.6 31.8L16.6 20.6L8 14.2L18.8 14.2L24 4Z"
+                  fill="currentColor"
                 />
-                {t('remember')}
-              </label>
-            )}
-          </>
-        )}
-        {error && <div className="text-red-400 text-sm">{error}</div>}
-        {info && <div className="text-green-400 text-sm">{info}</div>}        <button 
-          type="submit" 
-          className="bg-red-600 hover:bg-red-700 disabled:bg-red-800 disabled:cursor-not-allowed text-white py-2 rounded-xl font-bold flex items-center justify-center gap-2 transition-colors border-2 border-red-500 hover:border-red-400"
-          disabled={isLoading}
-        >
-          {isLoading && (
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-          )}          {isLoading 
-            ? t('loggingIn')
-            : isReset 
-              ? t('sendResetLink') 
-              : isLogin 
-                ? t('loginButton')
-                : t('signupButton')
-          }
-        </button>
-        <div className="flex flex-col gap-1 mt-2">          {!isReset && (
-            <button
-              type="button"
-              className="text-red-400 hover:underline text-sm border border-red-400 rounded px-2 py-1 hover:bg-red-400 hover:text-white transition-colors"
-              onClick={() => { setIsLogin(!isLogin); setError(''); setInfo('') }}
-            >
-              {isLogin ? t('switchToSignup') : t('switchToLogin')}
-            </button>
-          )}
-          <button
-            type="button"
-            className="text-red-400 hover:underline text-sm border border-red-400 rounded px-2 py-1 hover:bg-red-400 hover:text-white transition-colors"
-            onClick={() => { setIsReset(!isReset); setError(''); setInfo('') }}
-          >
-            {isReset ? t('backToLogin') : t('forgotPassword')}
-          </button>
-        </div>
-      </form>
+              </svg>
+            </div>
+            <h2 className="text-[#FFFFFF] text-lg font-bold leading-tight tracking-[-0.015em]">
+              GameGoUp
+            </h2>
+          </div>
+        </header>
 
-      {/* Anuncio inferior en móviles - Solo visible en pantallas pequeñas */}
-      <div className="lg:hidden mt-8 w-full max-w-sm">
-        <AdManager 
-          variant="card"
-          adSlot={getAdConfig('tech').slot}
-          fallbackAd={{
-            title: 'GameGoUp Pro',
-            description: 'Funciones premium para una experiencia gaming superior',
-            sponsor: 'GameGoUp',
-            link: '#'
-          }}
-          className="w-full"
-        />
+        {/* Main content with two columns */}
+        <div className="flex flex-1 justify-center">
+          <div className="flex w-full max-w-[1200px] px-10 py-5">
+            {/* Left side - Auth form */}
+            <div className="flex flex-col w-[512px] max-w-[512px] py-5">
+              <h2 className="text-[#FFFFFF] text-lg font-bold leading-tight tracking-[-0.015em] px-4 text-left pb-2 pt-4">
+                {isLogin
+                  ? `${t('navigation.login')} GameGoUp`
+                  : 'Crear cuenta en GameGoUp'}
+              </h2>
+
+              <form onSubmit={handleAuth}>
+                {/* Email field */}
+                <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+                  <label className="flex flex-col min-w-40 flex-1">
+                    <p className="text-[#FFFFFF] text-base font-medium leading-normal pb-2">
+                      Email
+                    </p>
+                    <input
+                      type="email"
+                      placeholder="Ingresa tu email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#FFFFFF] focus:outline-0 focus:ring-0 border border-[#303030] bg-[#212121] focus:border-[#303030] h-14 placeholder:text-[#ABABAB] p-[15px] text-base font-normal leading-normal"
+                      required
+                    />
+                  </label>
+                </div>
+
+                {/* Password field */}
+                <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+                  <label className="flex flex-col min-w-40 flex-1">
+                    <p className="text-[#FFFFFF] text-base font-medium leading-normal pb-2">
+                      Contraseña
+                    </p>
+                    <input
+                      type="password"
+                      placeholder="Ingresa tu contraseña"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#FFFFFF] focus:outline-0 focus:ring-0 border border-[#303030] bg-[#212121] focus:border-[#303030] h-14 placeholder:text-[#ABABAB] p-[15px] text-base font-normal leading-normal"
+                      required
+                      minLength={6}
+                    />
+                  </label>
+                </div>
+
+                {isLogin && (
+                  <p className="text-[#ABABAB] text-sm font-normal leading-normal pb-3 pt-1 px-4 underline cursor-pointer">
+                    ¿Olvidaste tu contraseña?
+                  </p>
+                )}
+
+                {/* Message display */}
+                {message && (
+                  <div
+                    className={`mx-4 my-3 p-3 rounded-xl text-sm ${
+                      message.includes('Error')
+                        ? 'bg-red-900/20 text-red-300 border border-red-800'
+                        : 'bg-green-900/20 text-green-300 border border-green-800'
+                    }`}
+                  >
+                    {message}
+                  </div>
+                )}
+
+                {/* Main action button */}
+                <div className="flex px-4 py-3 justify-start">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#EA2831] text-[#FFFFFF] text-sm font-bold leading-normal tracking-[0.015em] disabled:bg-[#EA2831]/50"
+                  >
+                    <span className="truncate">
+                      {loading
+                        ? 'Procesando...'
+                        : isLogin
+                          ? 'Iniciar sesión'
+                          : 'Crear cuenta'}
+                    </span>
+                  </button>
+                </div>
+
+                {/* Switch mode */}
+                <p className="text-[#ABABAB] text-sm font-normal leading-normal pb-3 pt-1 px-4">
+                  {isLogin
+                    ? '¿No tienes una cuenta?'
+                    : '¿Ya tienes una cuenta?'}
+                </p>
+                <div className="flex px-4 py-3 justify-start">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsLogin(!isLogin)
+                      setMessage('')
+                    }}
+                    className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#292929] text-[#FFFFFF] text-sm font-bold leading-normal tracking-[0.015em]"
+                  >
+                    <span className="truncate">
+                      {isLogin ? 'Crear cuenta' : 'Iniciar sesión'}
+                    </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            {/* Right side - Logo */}
+            <div className="flex-1 flex items-center justify-center p-8">
+              <div className="flex flex-col items-center space-y-6 max-w-sm">
+                <div className="relative w-64 h-64">
+                  <Image
+                    src="/assets/logo.png"
+                    alt="GameGoUp Logo"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-[#FFFFFF] text-2xl font-bold mb-2">
+                    ¡Bienvenido a GameGoUp!
+                  </h3>
+                  <p className="text-[#ABABAB] text-base leading-relaxed">
+                    Conecta con gamers de todo el mundo, crea salas de juego y
+                    disfruta de la mejor experiencia gaming en comunidad.
+                  </p>
+                </div>
+              </div>{' '}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-        {/* Anuncio lateral derecho - Solo visible en pantallas grandes */}
-        <div className="hidden lg:block lg:col-span-1">
-          <AdManager 
-            variant="card"
-            adSlot={getAdConfig('tech').slot}
-            fallbackAd={{
-              title: 'GameGoUp Pro',
-              description: 'Funciones premium para una experiencia gaming superior',
-              sponsor: 'GameGoUp',
-              link: '#'
-            }}
-            className="w-full"
-          />
-        </div>
-      </div>
-    </main>
   )
 }

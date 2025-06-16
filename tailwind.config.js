@@ -6,11 +6,11 @@ module.exports = {
         violet: '#9B59B6',
         red: '#FF3B3B',
         black: '#000000',
-        white: '#FFFFFF'
+        white: '#FFFFFF',
       },
       borderRadius: {
         '2xl': '1rem',
-      }
+      },
     },
   },
   plugins: [],

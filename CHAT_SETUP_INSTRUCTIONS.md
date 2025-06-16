@@ -14,18 +14,23 @@
 ## 📋 Setup completo del chat (si empiezas desde cero):
 
 ### 1. Configurar base de datos
+
 En **Supabase Dashboard → SQL Editor**, ejecuta:
+
 ```sql
 -- Contenido del archivo: supabase-chat-setup.sql
 ```
 
 ### 2. Verificar instalación
+
 Ejecuta para verificar:
+
 ```sql
 -- Contenido del archivo: verify-chat-setup-complete.sql
 ```
 
 ### 3. ¿Funciona el chat?
+
 - ✅ **SÍ**: El sistema de chat está listo
 - ❌ **NO**: Usa el script de reparación arriba
 
@@ -44,6 +49,7 @@ Ejecuta para verificar:
 ## 🚀 Funcionalidades del chat:
 
 Una vez configurado, tendrás:
+
 - ✅ **Mensajes en tiempo real**
 - ✅ **Lista de usuarios activos**
 - ✅ **Sistema de presencia**

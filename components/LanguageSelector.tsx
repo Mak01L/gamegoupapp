@@ -1,23 +1,24 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const languages = [
   { code: 'es', name: 'Español', flag: '🇪🇸' },
   { code: 'en', name: 'English', flag: '🇺🇸' },
-];
+]
 
 export default function LanguageSelector() {
-  const { i18n, t } = useTranslation('common');
-  const [isOpen, setIsOpen] = useState(false);
+  const { i18n, t } = useTranslation('common')
+  const [isOpen, setIsOpen] = useState(false)
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+  const currentLanguage =
+    languages.find((lang) => lang.code === i18n.language) || languages[0]
 
   const changeLanguage = (langCode: string) => {
-    i18n.changeLanguage(langCode);
-    setIsOpen(false);
-  };
+    i18n.changeLanguage(langCode)
+    setIsOpen(false)
+  }
 
   return (
     <div className="relative">
@@ -39,7 +40,7 @@ export default function LanguageSelector() {
             className="fixed inset-0 z-10"
             onClick={() => setIsOpen(false)}
           />
-          
+
           {/* Dropdown */}
           <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-20">
             <div className="py-1" role="menu">
@@ -66,5 +67,5 @@ export default function LanguageSelector() {
         </>
       )}
     </div>
-  );
+  )
 }

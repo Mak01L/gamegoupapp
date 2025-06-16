@@ -1,0 +1,82 @@
+{
+  "title": "My profile",
+  "edit": "Edit",
+  "save": "Save",
+  "editProfile": "Edit profile", 
+  "saveProfile": "Save profile",
+  "cancel": "Cancel",
+  "profileUpdated": "Profile updated successfully",
+  "loadingProfile": "Loading profile...",
+  "saving": "Saving...",
+  "pleaseLogin": "Please log in to view your profile.",
+  "avatar": {
+    "changeAvatar": "Change avatar",
+    "uploadNew": "Upload new avatar",
+    "altText": "{{username}}'s avatar"
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline"
+  },
+  "form": {
+    "biography": "Biography",
+    "realName": "Real name",
+    "location": "Location",
+    "birthdate": "Birth date",
+    "experience": "Gaming experience",
+    "visibility": "Profile visibility",
+    "placeholders": {
+      "biography": "Tell us about yourself...",
+      "realName": "Your real name (optional)",
+      "selectCountry": "Select your country",
+      "birthdate": "Your birth date"
+    },
+    "validation": {
+      "bioTooLong": "Biography must be 250 characters or less",
+      "realNameTooLong": "Real name must be 50 characters or less"
+    }
+  },
+  "privacy": {
+    "public": "Public",
+    "private": "Private",
+    "show": "Show",
+    "hide": "Hide",
+    "notSpecified": "Not specified"
+  },
+  "activity": {
+    "memberSince": "Member since",
+    "lastConnection": "Last connection",
+    "roomsCreated": "Rooms created",
+    "gamesPlayed": "Games played"
+  },
+  "preferences": {
+    "theme": "Theme",
+    "language": "Language", 
+    "visibility": "Profile visibility",
+    "options": {
+      "themeAuto": "Auto",
+      "themeLight": "Light",
+      "themeDark": "Dark",
+      "visibilityPublic": "Public",
+      "visibilityPrivate": "Private"
+    }
+  },
+  "noData": {
+    "noBiography": "No biography yet."
+  },
+  "characterCount": "{{count}}/250 characters",
+  "experience": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate", 
+    "advanced": "Advanced",
+    "professional": "Professional"
+  },
+  "publicProfile": "Public profile",
+  "viewingPublicProfile": "You're viewing this user's public profile",
+  "errors": {
+    "errorLoading": "Error loading profile",
+    "profilePrivate": "This profile is private",
+    "userNotFound": "User not found",
+    "profileNotFound": "Profile not found"
+  }
+}

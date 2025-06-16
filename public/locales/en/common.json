@@ -1,4 +1,5 @@
-{  "navigation": {
+{
+  "navigation": {
     "dashboard": "Dashboard",
     "profile": "Profile",
     "rooms": "Rooms",
@@ -6,7 +7,8 @@
     "logout": "Logout",
     "login": "Sign In",
     "backToRoomSearch": "Back to room search"
-  },  "buttons": {
+  },
+  "buttons": {
     "save": "Save",
     "cancel": "Cancel",
     "edit": "Edit",
@@ -29,7 +31,8 @@
     "online": "Online",
     "offline": "Offline",
     "connecting": "Connecting..."
-  },  "language": {
+  },
+  "language": {
     "selectLanguage": "Select language",
     "spanish": "Español",
     "english": "English"
@@ -44,6 +47,12 @@
   "misc": {
     "all": "All",
     "selectCountry": "Select a country",
+    "exploreRooms": "Explore Rooms",
+    "filters": "Filters",
+    "refresh": "Refresh",
+    "searchPlaceholder": "Search by room name or game...",
+    "comingSoon": "(Coming Soon)",
+    "goBack": "Go Back",
     "exploreRooms": "Explore Rooms",
     "filters": "Filters",
     "refresh": "Refresh",
@@ -74,7 +83,18 @@
     "rooms": "rooms",
     "activeRooms": "active rooms",
     "allRegions": "All",
-    "allSystems": "All",    "players": "players",
+    "allSystems": "All",
+    "players": "players",
+    "created": "Created",
+    "enter": "Enter",
+    "optional": "optional",
+    "tooltips": {
+      "regions": "Filter rooms by geographic regions where players connect",
+      "languages": "Filter rooms by the languages spoken in the room",
+      "countries": "Optionally filter by specific countries (this is optional)",
+      "systems": "Filter rooms by gaming platforms and systems"
+    },
+    "players": "players",
     "roomNotFound": "Room not found",
     "leaveRoom": "Leave room",
     "leaveRoomShort": "Leave",
@@ -83,35 +103,44 @@
     "chatPlaceholder": "Chat coming soon...",
     "send": "Send",
     "usersInRoom": "Users in Room"
-  },  "sidebar": {
+  },
+  "sidebar": {
     "yourRooms": "Your rooms",
     "createNewRoom": "Create new room",
     "loading": "Loading your rooms...",
     "noRoomsCreated": "You haven't created any rooms.",
     "createFirst": "Create one!",
-    "loadError": "Could not load your rooms."
+    "loadError": "Could not load your rooms.",
+    "activeRooms": "Active Rooms",
+    "noActiveRooms": "No active rooms",
+    "browseRooms": "Browse Rooms",
+    "findMoreRooms": "Find More Rooms"
   },
   "greeting": {
     "hello": "Hello, {{name}}"
-  },  "loading": {
+  },
+  "loading": {
     "dashboard": "Loading dashboard...",
     "profile": "Loading profile...",
     "room": "Loading room...",
     "general": "Loading..."
-  },  "dashboard": {
+  },
+  "dashboard": {
     "welcomeBack": "Welcome back, {{name}}!",
     "welcomeDescription": "Welcome back to GameGoUp",
     "statsCards": {
       "roomsCreated": "Created Rooms",
-      "activeRooms": "Active Rooms", 
+      "activeRooms": "Active Rooms",
       "messagesSent": "Messages Sent"
-    },    "quickActions": {
+    },
+    "quickActions": {
       "createRoom": "Create Room",
       "searchRooms": "Search Rooms",
       "myProfile": "My Profile",
       "achievements": "Achievements",
       "supportUs": "Support Us"
-    },    "recentRooms": {
+    },
+    "recentRooms": {
       "title": "Your Recent Rooms",
       "viewAll": "View all →",
       "noRoomsYet": "You haven't created any rooms yet",
@@ -123,11 +152,13 @@
         "description": "Help us keep the platform running",
         "button": "Donate ❤️",
         "thankyou": "Thank you for your support!"
-      },      "ads": {
+      },
+      "ads": {
         "sponsored": "Sponsored",
         "learnMore": "Learn more"
       }
-    },    "community": {
+    },
+    "community": {
       "title": "GameGoUp Community",
       "description": "Join our community and help make GameGoUp even better",
       "social": {
@@ -145,7 +176,8 @@
       "newsletter": {
         "title": "Stay updated",
         "description": "Get the latest news and updates from GameGoUp",
-        "emailPlaceholder": "your@email.com",        "subscribe": "Subscribe"
+        "emailPlaceholder": "your@email.com",
+        "subscribe": "Subscribe"
       }
     },
     "platform": {
