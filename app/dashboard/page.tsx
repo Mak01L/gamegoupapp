@@ -56,7 +56,7 @@ export default function DashboardPage() {
       
       const { data: roomsData, error } = await supabase
         .from('rooms')
-        .select('juego')
+        .select('id, juego')
         .not('juego', 'is', null)
 
       if (error) {
