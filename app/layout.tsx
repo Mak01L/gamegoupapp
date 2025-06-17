@@ -5,7 +5,7 @@ import Script from 'next/script'
 import { AuthProvider, useAuth } from '../components/AuthProvider.simple'
 import I18nWrapper from '../components/I18nWrapper'
 import { ChatProvider } from '../components/ChatManager'
-import MainLayout from '../components/MainLayout'
+import MainLayout from '../components/MainLayout.simple'
 import Footer from '../components/Footer'
 import { useTranslation } from 'react-i18next'
 

@@ -51,8 +51,7 @@ export default function RoomChat({ roomId }: RoomChatProps) {
   const { t } = useTranslation(['chat', 'common'])
   const {
     addRoom,
-    setRoomActive,
-    incrementUnreadMessages,    clearUnreadMessages,
+    setRoomActive,    incrementUnreadMessages,    clearUnreadMessages,
     setCurrentRoom,
   } = useChatManager()
   
@@ -124,9 +123,7 @@ export default function RoomChat({ roomId }: RoomChatProps) {
           }, 2000)
           setLoading(false)
           return
-        }
-
-        setUser(currentUser)
+        }        setUser(currentUser)
         console.log('👤 Usuario establecido:', currentUser.id.slice(-8))
 
         await loadRoomInfo()
@@ -385,8 +382,7 @@ export default function RoomChat({ roomId }: RoomChatProps) {
           .eq('user_id', userId)
 
         if (updateError) throw updateError
-      } else {
-        const { error: insertError } = await supabase
+      } else {        const { error: insertError } = await supabase
           .from('room_users')
           .insert({
             room_id: roomId,
@@ -396,8 +392,9 @@ export default function RoomChat({ roomId }: RoomChatProps) {
             last_seen: new Date().toISOString(),
           })
 
-        if (insertError) throw insertError
-      }
+        if (insertError) throw insertError      }
+      
+      console.log('✅ Usuario agregado a la sala exitosamente')
     } catch (error) {
       console.error('Error uniéndose a la sala:', error)
     }
@@ -500,9 +497,7 @@ export default function RoomChat({ roomId }: RoomChatProps) {
         console.error('❌ Error saliendo de la sala:', error)
         alert(`❌ Error: ${error.message}`)
         return
-      }
-
-      console.log('✅ Salido de la sala exitosamente')
+      }      console.log('✅ Salido de la sala exitosamente')
       router.push('/rooms')
     } catch (err) {
       console.error('❌ Error:', err)
