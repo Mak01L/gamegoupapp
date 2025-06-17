@@ -143,7 +143,9 @@ export default function DashboardPage() {
       // Convertir a actividad reciente
       const activities: RecentActivity[] = (recentRooms || []).map(room => {
         const timeAgo = getTimeAgo(room.created_at)
-        const username = room.profiles?.username || `Usuario${room.creador_id?.slice(-4)}`
+        const username = Array.isArray(room.profiles) 
+          ? room.profiles[0]?.username || `Usuario${room.creador_id?.slice(-4)}`
+          : room.profiles?.username || `Usuario${room.creador_id?.slice(-4)}`
         
         const gameIcons: { [key: string]: string } = {
           'Valorant': '🎯',
@@ -303,6 +305,7 @@ export default function DashboardPage() {
     'Reporta comportamiento tóxico para mantener un ambiente sano'
   ]
 
+  // Verificación de autenticación mejorada
   if (!user) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-violet-900 via-purple-900 to-indigo-900 flex items-center justify-center">
@@ -326,7 +329,7 @@ export default function DashboardPage() {
         {/* Header */}
         <div className="mb-8 px-4">
           <h1 className="text-4xl font-bold mb-2">
-            🎮 ¡Hola de nuevo, {user.email?.split('@')[0]}!
+            🎮 ¡Hola de nuevo, {user?.email?.split('@')[0] || 'Gamer'}!
           </h1>
           <p className="text-xl text-gray-300">
             Listo para conquistar el mundo gaming hoy?
