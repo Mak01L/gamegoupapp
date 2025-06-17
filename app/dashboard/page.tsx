@@ -143,9 +143,16 @@ export default function DashboardPage() {
       // Convertir a actividad reciente
       const activities: RecentActivity[] = (recentRooms || []).map(room => {
         const timeAgo = getTimeAgo(room.created_at)
-        const username = Array.isArray(room.profiles) 
-          ? room.profiles[0]?.username || `Usuario${room.creador_id?.slice(-4)}`
-          : room.profiles?.username || `Usuario${room.creador_id?.slice(-4)}`
+        // Manejo seguro del username desde profiles
+        let username = `Usuario${room.creador_id?.slice(-4) || '0000'}`
+        
+        if (room.profiles) {
+          if (Array.isArray(room.profiles) && room.profiles.length > 0) {
+            username = room.profiles[0].username || username
+          } else if (typeof room.profiles === 'object' && room.profiles.username) {
+            username = room.profiles.username
+          }
+        }
         
         const gameIcons: { [key: string]: string } = {
           'Valorant': '🎯',
