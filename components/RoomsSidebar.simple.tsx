@@ -4,9 +4,11 @@ import React from 'react'
 
 interface RoomsSidebarProps {
   className?: string
+  isOpen?: boolean
+  currentRoomId?: string
 }
 
-export default function RoomsSidebar({ className }: RoomsSidebarProps) {
+export default function RoomsSidebar({ className, isOpen, currentRoomId }: RoomsSidebarProps) {
   return (
     <div className={`bg-neutral-900 border-r border-neutral-700 h-full flex flex-col ${className}`}>
       <div className="p-4 border-b border-neutral-700">
