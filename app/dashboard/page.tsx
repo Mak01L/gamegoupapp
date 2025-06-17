@@ -146,12 +146,17 @@ export default function DashboardPage() {
         // Manejo seguro del username desde profiles
         let username = `Usuario${room.creador_id?.slice(-4) || '0000'}`
         
-        if (room.profiles) {
-          if (Array.isArray(room.profiles) && room.profiles.length > 0) {
-            username = room.profiles[0].username || username
-          } else if (typeof room.profiles === 'object' && room.profiles.username) {
-            username = room.profiles.username
+        try {
+          if (room.profiles) {
+            if (Array.isArray(room.profiles)) {
+              username = room.profiles[0]?.username || username
+            } else {
+              username = (room.profiles as any)?.username || username
+            }
           }
+        } catch (error) {
+          // Usar fallback si hay algún problema con profiles
+          console.warn('Error accessing profiles:', error)
         }
         
         const gameIcons: { [key: string]: string } = {
